@@ -113,6 +113,10 @@ public class WarringStatesGame {
      */
     public static boolean isMoveLegal(String placement, char locationChar) {
         // FIXME Task 5: determine whether a given move is legal
+        //check the third character of the string placement whether it's equals a-z or 0-9
+        //check the third character of the string placement equals to locationChar
+        //compares the third character of the string placement and the locationChar
+        //compares the third character and then compares the second character of the string placement whether there are the same.
         return false;
     }
 
