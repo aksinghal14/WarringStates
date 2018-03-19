@@ -92,6 +92,10 @@ public class WarringStatesGame {
      */
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
+        //check the length of the characters
+        //check the characters one by one
+        //using count and check if the card is appearing once
+        //could use hash set to see if the location has one card
         return false;
     }
 
