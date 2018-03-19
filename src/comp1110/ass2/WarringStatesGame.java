@@ -17,7 +17,67 @@ public class WarringStatesGame {
      */
     static boolean isCardPlacementWellFormed(String cardPlacement) {
         // FIXME Task 2: determine whether a card placement is well-formed
-        return false;
+
+        //or use the int = ascii;
+
+        boolean b1 = false;
+        boolean b2 = false;
+        boolean b3 = false;
+
+        if((cardPlacement.charAt(0) >= 'a' && cardPlacement.charAt(0) <= 'g')||cardPlacement.charAt(0) == 'z'){
+            b1 = true;
+        }else{
+            b1 = false;
+        }
+
+        if(cardPlacement.charAt(0) == 'a'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='7'){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'b'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='6' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'c'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='5' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'd'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='4' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'e'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='3' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'f'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='2' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'g'){
+            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='1' ){
+                b2 = true;
+            }
+        }else if(cardPlacement.charAt(0) == 'z'){
+            if(cardPlacement.charAt(1) == '9'){
+                b2 = true;
+            }
+        }else{
+            b2 = false;
+        }
+
+
+        if((cardPlacement.charAt(2) >='A' && cardPlacement.charAt(2)<='Z')||(cardPlacement.charAt(2)>='0'&&cardPlacement.charAt(2)<='9')){
+            b3 = true;
+        }else{
+            b3 = false;
+        }
+
+        if(b1 && b2 && b3){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
