@@ -133,6 +133,11 @@ public class WarringStatesGame {
      */
     static boolean isMoveSequenceValid(String setup, String moveSequence) {
         // FIXME Task 6: determine whether a placement sequence is valid
+        // check if there is the same char in the moveSequence and the char in the moveSequence should be the char in setup
+        // use setup to create several strings as dictionaries for the a valid move
+        // for example row: "4YSMGA","5ZTNHB"... column: "ABCDEF","GHIJKL"
+        // check if first char and second char in the same string(row string or column)
+        // check all chars in the moveSequence and return true
         return false;
     }
 
@@ -150,6 +155,10 @@ public class WarringStatesGame {
      */
     public static String getSupporters(String setup, String moveSequence, int numPlayers, int playerId) {
         // FIXME Task 7: get the list of supporters for a given player after a sequence of moves
+        // distribute the sting to a list of list with the number of players
+        // use the for loop or something else to  extract the elements in each list of list with the playerId(index)
+        // combine elements and return a string
+        // transfer the string to a 2-char-string(a-g,0-7)
         return null;
     }
 
@@ -172,6 +181,13 @@ public class WarringStatesGame {
      */
     public static int[] getFlags(String setup, String moveSequence, int numPlayers) {
         // FIXME Task 8: determine which player controls the flag of each kingdom after a given sequence of moves
+        // use the getSupporters function to get a string
+        // get the odd index char in the string
+        // count the same char to get the number of flag
+        // compare the flag to others and take the highest number to the list
+        // if no one has this flag, add (-1) to the list.
+        // ps: if there are the same number of flag, go back to the string of each player and get the index of the last appearance of this char
+        // then add the playerId to the list
         return null;
     }
 
