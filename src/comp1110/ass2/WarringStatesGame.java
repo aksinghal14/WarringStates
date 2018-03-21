@@ -96,7 +96,115 @@ public class WarringStatesGame {
         //check the characters one by one
         //using count and check if the card is appearing once
         //could use hash set to see if the location has one card
-        return false;
+
+        //boolean b = false;
+        boolean b1 = false;
+        //boolean b2 = false;
+        //boolean b3 = false;
+
+
+
+        if(placement.length()%3 == 0){
+            for(int i=0;i<placement.length();i=i+3){
+                String str1 = placement.substring(i,i+3);
+                b1 = isCardPlacementWellFormed(str1);
+            }
+        }else{
+            b1 = false;
+        }
+
+        /*
+        String[] card = new String[placement.length()/3];
+        char[] location = new char[placement.length()/3];
+        for(int i=0;i<placement.length();i=i+3){
+            for(int j=0;j<placement.length()/3;j++) {
+                card[j] = placement.substring(i, i + 2);
+                location[j] = placement.charAt(i+2);
+            }
+        }
+        for(int i =0;i<card.length;i++){
+            for(int j=0;j<card.length;j++){
+                if(card[i].equals(card[j])){
+                    b2 = false;
+                }else{
+                    b2 = true;
+                }
+            }
+        }*/
+
+
+
+
+        /*
+        if(placement.length()%3 == 0){
+            for(int i=0;i<placement.length();i=i+3){
+                for(int j=0;j<3;j++){
+                    String str = placement.substring(i,i+3);
+                    b = isCardPlacementWellFormed(str);
+                }
+            }
+        }else{
+            return false;
+        }*/
+
+        /*
+        boolean b1 = false;
+        boolean b2 = false;
+
+        if(placement.charAt(0)=='a'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'7'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='b'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'6'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='c'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'5'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='d'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'4'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='e'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'3'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='f'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'2'){
+                b1 = true;
+            }
+        }else if(placement.charAt(0)=='g'){
+            if(placement.charAt(1)>'0'&&placement.charAt(1)<'1'){
+                b1 = true;
+            }
+        }else{
+            b1 = false;
+        }
+
+
+        if((placement.charAt(2) >='A' && placement.charAt(2)<='Z')||(placement.charAt(2)>='0'&&placement.charAt(2)<='9')){
+            b2 = true;
+        }else{
+            b2 = false;
+        }
+
+
+        if(b1 && b2){
+            return true;
+        }else{
+            return false;
+        }*/
+
+
+        if(b1){
+            return true;
+        }else{
+            return false;
+        }
+
+
     }
 
     /**
