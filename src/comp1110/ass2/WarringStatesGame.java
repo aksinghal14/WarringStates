@@ -231,7 +231,7 @@ public class WarringStatesGame {
         if(c.indexOf(locationChar)>=0){
             // check the zhangyi in the range of 0-9 or A-Z
             // check char location and the zhangyi in the same line
-            if(c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)  ){
+            if(c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)&&notNoCard(locationChar,placement)  ){
                     return true;
             }
         }
@@ -245,8 +245,9 @@ public class WarringStatesGame {
         String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
         String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
         for(String s:row){
+            // check the location should be the same line
             if(s.indexOf(locationChar)>=0&&s.indexOf(zhangyilocation)>=0){
-               return true;
+                return true;
                 }
             }
         for(String c :column){
@@ -255,6 +256,18 @@ public class WarringStatesGame {
             }
         }
         return false;
+    }
+    public static boolean notNoCard(char locationChar,String placement){
+        for(int i = 2; i<=placement.length()-1;i= i+3){
+            if(placement.charAt(i)==locationChar){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String transfercardlocationToC(){
+
     }
     /**
      * Determine whether a move sequence is valid.
