@@ -80,6 +80,25 @@ public class WarringStatesGame {
         }
     }
 
+    static String[] getCardPlacement(String placement){
+        String[] card = new String[placement.length()/3];
+
+        if (placement.length()%3 == 0){
+            int j = 0;
+            for (int i = 0; i < placement.length(); i = i + 3) {
+                card[j] = placement.substring(i, i + 3);
+                j++;
+            }
+        }
+        return card;
+    }
+    static char getCardLocation(String cardPlacement){
+        return cardPlacement.charAt(2);
+    }
+    static String getCardStates(String cardPlacement){
+        return cardPlacement.substring(0,2);
+    }
+
     /**
      * Determine whether a placement string is well-formed:
      * - it consists of exactly N three-character card placements (where N = 1 .. 36);
@@ -97,113 +116,198 @@ public class WarringStatesGame {
         //using count and check if the card is appearing once
         //could use hash set to see if the location has one card
 
-        //boolean b = false;
-        boolean b1 = false;
-        //boolean b2 = false;
-        //boolean b3 = false;
-
-
-
-        if(placement.length()%3 == 0){
-            for(int i=0;i<placement.length();i=i+3){
-                String str1 = placement.substring(i,i+3);
-                b1 = isCardPlacementWellFormed(str1);
-            }
-        }else{
-            b1 = false;
-        }
-
-        /*
-        String[] card = new String[placement.length()/3];
-        char[] location = new char[placement.length()/3];
-        for(int i=0;i<placement.length();i=i+3){
-            for(int j=0;j<placement.length()/3;j++) {
-                card[j] = placement.substring(i, i + 2);
-                location[j] = placement.charAt(i+2);
-            }
-        }
-        for(int i =0;i<card.length;i++){
-            for(int j=0;j<card.length;j++){
-                if(card[i].equals(card[j])){
-                    b2 = false;
-                }else{
-                    b2 = true;
-                }
-            }
-        }*/
-
-
-
-
-        /*
-        if(placement.length()%3 == 0){
-            for(int i=0;i<placement.length();i=i+3){
-                for(int j=0;j<3;j++){
-                    String str = placement.substring(i,i+3);
-                    b = isCardPlacementWellFormed(str);
-                }
-            }
-        }else{
-            return false;
-        }*/
-
-        /*
+        boolean b0 = false;
         boolean b1 = false;
         boolean b2 = false;
+        boolean b3 = false;
 
-        if(placement.charAt(0)=='a'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'7'){
-                b1 = true;
+
+        if(placement != null && placement !=""){
+
+            b0 = true;
+
+            if(placement.length()%3 == 0){
+
+                int countb1 =0;
+                int countb2 =0;
+                int countb3 =0;
+
+                for(int i=0;i<placement.length()/3;i=i+3){
+                    b1 = isCardPlacementWellFormed(placement.substring(i,i+3));
+                    if(b1 == false){
+                        countb1++;
+                    }
+                }
+                if(countb1==0){
+                    b1 = true;
+                }
+
+                String[] card = getCardPlacement(placement);
+
+                String[] cardstate = new String[placement.length()/3];
+                char[] cardlocation = new char[placement.length()/3];
+
+                for(int i=0;i<card.length;i++){
+                    cardstate[i] = getCardStates(card[i]);
+                    cardlocation[i] = getCardLocation(card[i]);
+                }
+
+                for(int i=0;i<cardstate.length;i++){
+                    for(int j=i+1;j<cardstate.length;j++){
+                        if(cardstate[i].equals(cardstate[j])){
+                            countb2++;
+                        }
+                    }
+                }
+                if(countb2==0){
+                    b2 = true;
+                }
+
+                for(int i=0;i<cardlocation.length;i++){
+                    for(int j=i+1;j<cardlocation.length;j++){
+                        if(cardlocation[i]==cardlocation[j]){
+                            countb3++;
+                        }
+                    }
+                }
+                if(countb3==0){
+                    b3 = true;
+                }
+
             }
-        }else if(placement.charAt(0)=='b'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'6'){
-                b1 = true;
-            }
-        }else if(placement.charAt(0)=='c'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'5'){
-                b1 = true;
-            }
-        }else if(placement.charAt(0)=='d'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'4'){
-                b1 = true;
-            }
-        }else if(placement.charAt(0)=='e'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'3'){
-                b1 = true;
-            }
-        }else if(placement.charAt(0)=='f'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'2'){
-                b1 = true;
-            }
-        }else if(placement.charAt(0)=='g'){
-            if(placement.charAt(1)>'0'&&placement.charAt(1)<'1'){
-                b1 = true;
-            }
+
+        }else{
+            b0 = false;
+        }
+
+
+        /*String[] card = getCardPlacement(placement);
+
+
+        String[] cardstate = new String[placement.length()/3];
+        char[] cardlocation = new char[placement.length()/3];
+
+        for(int i=0;i<card.length;i++){
+            cardstate[i] = getCardStates(card[i]);
+            cardlocation[i] = getCardLocation(card[i]);
+        }
+
+        boolean b1= false;
+        boolean b2= false;
+        boolean b3= false;
+        boolean b4= false;
+
+        if(placement != null && placement!=""){
+            b1 = true;
         }else{
             b1 = false;
         }
 
+        for(int i=0;i<card.length;i++){
+            b2 = isCardPlacementWellFormed(card[i]);
+            if(b2 == false){
+                break;
+            }else{
+                b2 =true;
+            }
+        }
 
-        if((placement.charAt(2) >='A' && placement.charAt(2)<='Z')||(placement.charAt(2)>='0'&&placement.charAt(2)<='9')){
-            b2 = true;
-        }else{
-            b2 = false;
+        for(int i=0;i<cardstate.length;i++){
+            for(int j=i+1;j<cardstate.length;j++){
+                if(cardstate[i].equals(cardstate[j])){
+                    b3 = false;
+                    break;
+                }
+            }
+        }
+
+        for(int i=0;i<cardstate.length;i++){
+            for(int j=i+1;j<cardstate.length;j++){
+                if(cardlocation[i]==cardlocation[j]){
+                    b4 = false;
+                    break;
+                }
+            }
+        }*/
+
+
+
+
+
+
+        /*boolean b1 = false;
+        boolean b2 = false;
+        boolean b3 = false;
+
+
+        if(placement != null && placement !="") {
+            if (placement.length() % 3 == 0) {
+                for (int i = 0; i < placement.length(); i = i + 3) {
+                    String str1 = placement.substring(i, i + 3);
+                    b1 = isCardPlacementWellFormed(str1);
+                }
+            } else {
+                b1 = false;
+            }
+        }
+
+        if(placement != null && placement !="") {
+            if (placement.length() % 3 == 0) {
+                String[] card = new String[placement.length() / 3];
+
+                int j = 0;
+                for (int i = 0; i < placement.length(); i = i + 3) {
+                    card[j] = placement.substring(i, i + 2);
+                    j++;
+                }
+
+                for (int i = 0; i < card.length; i++) {
+                    for (int k = i + 1; k < card.length; k++) {
+                        if (card[i].equals(card[k])) {
+                            b2 = false;
+                        }
+                    }
+                }
+            } else {
+                b2 = false;
+            }
+        }
+
+        if(placement != null && placement !="") {
+            if (placement.length() % 3 == 0) {
+                String[] card = new String[placement.length() / 3];
+
+                int j = 0;
+                for (int i = 0; i < placement.length(); i = i + 3) {
+                    card[j] = placement.substring(i, i + 3);
+                    j++;
+                }
+
+                for (int i = 0; i < card.length; i++) {
+                    for (int k = i + 1; k < card.length; k++) {
+                        if (card[i].charAt(2) == card[k].charAt(2)) {
+                            b3 = false;
+                        }
+                    }
+                }
+            } else {
+                b3 = false;
+            }
         }
 
 
-        if(b1 && b2){
+        if(b1 && b2 && b3){
             return true;
         }else{
             return false;
         }*/
 
 
-        if(b1){
+        if(b0 && b1 && b2 && b3){
             return true;
         }else{
             return false;
         }
-
 
     }
 
