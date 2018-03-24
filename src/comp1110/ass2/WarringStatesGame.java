@@ -247,7 +247,7 @@ public class WarringStatesGame {
                 return placement.charAt(q-2);
             }
         }
-        return '0';
+        return '1';
     }
 
     public static boolean isInSameLine(char zhangyilocation,char locationChar){
@@ -281,7 +281,6 @@ public class WarringStatesGame {
         // the location of placement is known
         // choose the same element in the line
         String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
-
         for(String i: s){
             int distance = i.indexOf(zhangyilocation(placement))-i.indexOf(locationChar);
             int d = Math.abs(distance);
@@ -289,7 +288,7 @@ public class WarringStatesGame {
                 // find the string of zhangyi and next move
                 for(int k  = 0; k < i.length();k = k+1){
                     for(int u = 2;u<placement.length();u = u+3){
-                        if(i.indexOf(locationChar)>=i.indexOf(zhangyilocation(placement))&& i.charAt(k)==zhangyilocation(placement)) {
+                        if(i.indexOf(locationChar)>=i.indexOf(zhangyilocation(placement))&& k>i.indexOf(zhangyilocation(placement))) {
                             if (i.charAt(k) == placement.charAt(u)) {
                                 if (placement.charAt(u - 2) == locationC(locationChar, placement)) {
                                     int b1 = i.indexOf(zhangyilocation(placement)) - k;
@@ -299,7 +298,7 @@ public class WarringStatesGame {
                                     }
                                 }
                             }
-                        }else if(i.indexOf(locationChar)<i.indexOf(zhangyilocation(placement))&&k<i.indexOf(zhangyilocation(placement))){
+                        }else if(i.indexOf(locationChar)<i.indexOf(zhangyilocation(placement))&& k<i.indexOf(zhangyilocation(placement)) ){
                             if(i.charAt(k)==placement.charAt(u)) {
                                 if(placement.charAt(u-2)==locationC(locationChar,placement)){
                                     int c1 = i.indexOf(zhangyilocation(placement)) - k;
