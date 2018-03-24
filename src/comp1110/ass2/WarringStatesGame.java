@@ -231,7 +231,7 @@ public class WarringStatesGame {
         if(c.indexOf(locationChar)>=0){
             // check the zhangyi in the range of 0-9 or A-Z
             // check char location and the zhangyi in the same line
-            if(c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)&&notNoCard(locationChar,placement)  ){
+            if(getLine(locationChar,placement)&&c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)&&notNoCard(locationChar,placement)){
                     return true;
             }
         }
@@ -241,6 +241,15 @@ public class WarringStatesGame {
     public static char zhangyilocation(String placement){
         return placement.charAt(placement.indexOf('z')+2);
     }
+    public static char locationC(char locationChar,String placement){
+        for(int q =2;q< placement.length();q= q+3 ){
+            if(placement.charAt(q)== locationChar){
+                return placement.charAt(q-2);
+            }
+        }
+        return '0';
+    }
+
     public static boolean isInSameLine(char zhangyilocation,char locationChar){
         String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
         String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
@@ -248,14 +257,28 @@ public class WarringStatesGame {
             // check the location should be the same line
             if(s.indexOf(locationChar)>=0&&s.indexOf(zhangyilocation)>=0){
                 return true;
-                }
             }
+        }
         for(String c :column){
             if(c.indexOf(locationChar)>=0 &&c.indexOf(zhangyilocation)>=0) {
-                return true;
+               return true;
             }
         }
         return false;
+    }
+    public static String noLocation(String placement){
+        String s = new String();
+        for (int i = 2;i<=placement.length()-1;i= i+3){
+            s = placement.replace(String.valueOf(placement.charAt(i)),"");
+        }
+        return s;
+    }
+    public static String location(String placement){
+        String s = new String();
+        for(int i = 2;i<=placement.length()-1;i=i+3){
+            s = s + placement.charAt(i);
+        }
+        return s;
     }
     public static boolean notNoCard(char locationChar,String placement){
         for(int i = 2; i<=placement.length()-1;i= i+3){
@@ -265,10 +288,61 @@ public class WarringStatesGame {
         }
         return false;
     }
-
-    public static String transfercardlocationToC(){
-
+    public static boolean getLine(char locationChar,String placement){
+        //zhangyilocation(placement) should known
+        // the location of placement is known
+        // choose the same element in the line
+        String[] s = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
+        for(String i: s){
+            if(i.indexOf(locationChar)>=0 && i.indexOf(zhangyilocation(placement))>=0){
+                for(int k  = 0; k < i.length();k = k+1){
+                    for(int u = 2;u<placement.length();u = u+3){
+                        if(i.charAt(k)==placement.charAt(u)&&i.charAt(k) != locationChar&&i.charAt(k)!=zhangyilocation(placement)){
+                            if(placement.charAt(u-2)==locationC(locationChar,placement)){
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
+   /* public static boolean noSameKingdom(char locationChar,String placement){
+        for(int i = 0; i <=placement.length()-1;i = i+3){
+            if(isInSameLine(zhangyilocation(placement),locationChar)&& isInSameLine(zhangyilocation(placement),placement.charAt(i+2))){
+                if(placement.charAt(i)== placement.charAt(placement.indexOf(locationChar)-2) ){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+     for(int i= 0;i<c.length();i = i+1){
+                    if(notNoCard(c.charAt(i),placement)){
+                        if(c.charAt(i) != zhangyilocation(placement)&&c.charAt(i) != locationChar){
+                            if(noLocation(placement).charAt(2*location(placement).indexOf(c.charAt(i)))!= locationChar){
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+
+     for(int m = 0; m<s.length();m=m+1){
+                    if(notNoCard(s.charAt(m),placement)){
+                        // the line 's other number
+                        if(s.charAt(m) != zhangyilocation(placement)&&s.charAt(m) != locationChar){
+                            // if the other number char is same to locationChar return false
+                            if(noLocation(placement).charAt(2*location(placement).indexOf(s.charAt(m)) )== locationChar){
+                                return false;
+                            }
+                        }
+                    }
+                }
+    */
+
     /**
      * Determine whether a move sequence is valid.
      * To be valid, the move sequence must be comprised of 1..N location characters
