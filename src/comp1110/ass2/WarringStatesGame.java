@@ -227,16 +227,21 @@ public class WarringStatesGame {
         //compares the third character and then compares the second character of the string placement whether there are the same.
         //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
         String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // if the char in the range
         if(c.indexOf(locationChar)>=0){
-            if(c.indexOf(placement.charAt(2))>=0){
-                if(placement.charAt(2)==locationChar){
+            // check the zhangyi in the range of 0-9 or A-Z
+            // check char location and the zhangyi in the same line
+            if(c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)  ){
                     return true;
-                }
             }
         }
         return false;
     }
-    public boolean isInSameLine(char zhangyilocation,char locationChar){
+    // to find the location of zhangyi
+    public static char zhangyilocation(String placement){
+        return placement.charAt(placement.indexOf('z')+2);
+    }
+    public static boolean isInSameLine(char zhangyilocation,char locationChar){
         String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
         String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
         for(String s:row){
