@@ -225,9 +225,32 @@ public class WarringStatesGame {
         //check the third character of the string placement equals to locationChar
         //compares the third character of the string placement and the locationChar
         //compares the third character and then compares the second character of the string placement whether there are the same.
+        //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
+        String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        if(c.indexOf(locationChar)>=0){
+            if(c.indexOf(placement.charAt(2))>=0){
+                if(placement.charAt(2)==locationChar){
+                    return true;
+                }
+            }
+        }
         return false;
     }
-
+    public boolean isInSameLine(char zhangyilocation,char locationChar){
+        String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
+        String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
+        for(String s:row){
+            if(s.indexOf(locationChar)>=0&&s.indexOf(zhangyilocation)>=0){
+               return true;
+                }
+            }
+        for(String c :column){
+            if(c.indexOf(locationChar)>=0 &&c.indexOf(zhangyilocation)>=0) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Determine whether a move sequence is valid.
      * To be valid, the move sequence must be comprised of 1..N location characters
