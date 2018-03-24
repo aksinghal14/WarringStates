@@ -329,7 +329,96 @@ public class WarringStatesGame {
         //check the third character of the string placement equals to locationChar
         //compares the third character of the string placement and the locationChar
         //compares the third character and then compares the second character of the string placement whether there are the same.
+        //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
+        String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // if the char in the range
+        if(c.indexOf(locationChar)>=0){
+            // check the zhangyi in the range of 0-9 or A-Z
+            // check char location and the zhangyi in the same line
+            if(getLine(locationChar,placement)&&c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)&&notNoCard(locationChar,placement)){
+                    return true;
+            }
+        }
         return false;
+    }
+    // to find the location of zhangyi
+    public static char zhangyilocation(String placement){
+        return placement.charAt(placement.indexOf('z')+2);
+    }
+    public static char locationC(char locationChar,String placement){
+        for(int q =2;q< placement.length();q= q+3 ){
+            if(placement.charAt(q)== locationChar){
+                return placement.charAt(q-2);
+            }
+        }
+        return '1';
+    }
+
+    public static boolean isInSameLine(char zhangyilocation,char locationChar){
+        String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
+        String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
+        for(String s:row){
+            // check the location should be the same line
+            if(s.indexOf(locationChar)>=0&&s.indexOf(zhangyilocation)>=0){
+                return true;
+            }
+        }
+        for(String c :column){
+            if(c.indexOf(locationChar)>=0 &&c.indexOf(zhangyilocation)>=0) {
+               return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean notNoCard(char locationChar,String placement){
+        for(int i = 2; i<=placement.length()-1;i= i+3){
+            if(placement.charAt(i)==locationChar){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean getLine(char locationChar,String placement){
+        //zhangyilocation(placement) should known
+        // the location of placement is known
+        // choose the same element in the line
+        String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
+        for(String i: s){
+            int distance = i.indexOf(zhangyilocation(placement))-i.indexOf(locationChar);
+            int d = Math.abs(distance);
+            if(i.indexOf(locationChar)>=0 && i.indexOf(zhangyilocation(placement))>=0){
+                // find the string of zhangyi and next move
+                for(int k  = 0; k < i.length();k = k+1){
+                    for(int u = 2;u<placement.length();u = u+3){
+                        if(i.indexOf(locationChar)>=i.indexOf(zhangyilocation(placement))&& k>i.indexOf(zhangyilocation(placement))) {
+                            if (i.charAt(k) == placement.charAt(u)) {
+                                if (placement.charAt(u - 2) == locationC(locationChar, placement)) {
+                                    int b1 = i.indexOf(zhangyilocation(placement)) - k;
+                                    int b2 = Math.abs(b1);
+                                    if (b2 > d) {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }else if(i.indexOf(locationChar)<i.indexOf(zhangyilocation(placement))&& k<i.indexOf(zhangyilocation(placement)) ){
+                            if(i.charAt(k)==placement.charAt(u)) {
+                                if(placement.charAt(u-2)==locationC(locationChar,placement)){
+                                    int c1 = i.indexOf(zhangyilocation(placement)) - k;
+                                    int c2 = Math.abs(c1);
+                                    if(c2>d){
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                            }
+                        }
+                    }
+
+                }
+        return true;
     }
 
     /**
