@@ -45,7 +45,21 @@ public class Viewer extends Application {
      */
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
-        /*public void rect (Stage primarystage){
+        this.pieces.getChildren().clear();// clearing pieces
+
+        while (root.getChildren().size() >= 36)// input string less than 36
+            root.getChildren().remove(root.getChildren().size() - 1);
+
+        String[] piece = new String[placement.length() / 3];
+        for (int i = 0; i < placement.length() / 3; i++) {
+            piece[i] = placement.substring(3 * i, (3 * i) + 2);
+            Character name = placement.charAt(3 * i);
+            Character movement = placement.charAt((3 * i) + 1); //get the moved character
+            Character location = placement.charAt((3 * i) + 2); //get the located character
+        }
+    }
+
+/*public void rect (Stage primarystage){
             AnchorPane root = new AnchorPane();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -63,23 +77,6 @@ public class Viewer extends Application {
         }
         scene.setRoot(root);
         stage.show();*/
-    }
-
-
-
-        /*this.pieces.getChildren().clear();// clearing pieces
-
-        while (root.getChildren().size() >= 36)// input string less than 36
-            root.getChildren().remove(root.getChildren().size() - 1);
-
-        String[] piece = new String[placement.length()/3];
-        for (int i = 0; i < placement.length()/3; i++) {
-            piece[i] = placement.substring(3*i,(3*i)+2);
-            Character name = placement.charAt(3*i);
-            Character movement = placement.charAt((3*i)+1); //get the moved character
-            Character  location = placement.charAt((3*i) + 2); //get the located character*/
-
-
 
     /**
      * Create a basic text field for input and a refresh button.
@@ -119,17 +116,68 @@ public class Viewer extends Application {
         for(int i=0;i<6;i++){
             for(int j=0;j<6;j++){
                 Rectangle square = new Rectangle(i*100,j*100,90,90);
-                if(i==0 && j==0){
+                if(i==0 && j==0 ){
                     square.setFill(Color.BLUE);
                 }
+                else if(i==0 && j==1 ){
+                        square.setFill(Color.RED);
+                }
+                else if(i==0 && j==2 ) {
+                    square.setFill(Color.BISQUE);
+                }
+                    else if(i==0 && j==3 ) {
+                    square.setFill(Color.BLUE);
+                }
+                else if(i==0 && j==4 ) {
+                    square.setFill(Color.RED);
+                }
+                else if(i==0 && j==5 ) {
+                    square.setFill(Color.TAN);
+                }
+                else if(i==1 && j==1 ) {
+                    square.setFill(Color.RED);
+                }
+                else if(i==1 && j==2 ) {
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==1 && j==3 ) {
+                    square.setFill(Color.GREEN);
+                }
+                else if(i==1 && j==0 ) {
+                    square.setFill(Color.BISQUE);
+                }
+                else if(i==1 && j==4 ) {
+                    square.setFill(Color.BLACK);
+                }
+                else if(i==1 && j==5 ) {
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==2 && j==2 ) {
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==2 && j==0 ) {
+                    square.setFill(Color.VIOLET);
+                }
+                else if(i==2 && j==1 ) {
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==2 && j==3 ) {
+                    square.setFill(Color.BISQUE);
+                }
+                else if(i==2 && j==4 ) {
+                    square.setFill(Color.BLUE);
+                }
+                else if(i==2 && j==5 ) {
+                    square.setFill(Color.GRAY);
+                }
+
                 root.getChildren().add(square);
             }
 
         }
 
 
-
-        Scene scene = new Scene(root, 1000, 1000);
+        final Scene scene = new Scene(root, 1000, 1000, Color.BEIGE);
 
         root.getChildren().add(controls);
 
