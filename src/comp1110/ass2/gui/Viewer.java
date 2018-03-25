@@ -1,5 +1,6 @@
 package comp1110.ass2.gui;
 
+import comp1110.ass2.WarringStatesGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,7 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -26,6 +33,9 @@ public class Viewer extends Application {
 
     private final Group root = new Group();
     private final Group controls = new Group();
+    private final Group squareg = new Group();
+    private final Group pieces = new Group();
+
     TextField textField;
 
     /**
@@ -35,7 +45,41 @@ public class Viewer extends Application {
      */
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
+        /*public void rect (Stage primarystage){
+            AnchorPane root = new AnchorPane();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            int columns = 6, rows = 6;
+            Rectangle rec = null;
+            for (int i = 0; i < columns; i++) {
+                for (int j = 0; j < rows; j++) {
+
+                    rec.setStroke(Color.RED);
+
+                    root.getChildren().add(rec);
+                }
+            }
+        }
+        scene.setRoot(root);
+        stage.show();*/
     }
+
+
+
+        /*this.pieces.getChildren().clear();// clearing pieces
+
+        while (root.getChildren().size() >= 36)// input string less than 36
+            root.getChildren().remove(root.getChildren().size() - 1);
+
+        String[] piece = new String[placement.length()/3];
+        for (int i = 0; i < placement.length()/3; i++) {
+            piece[i] = placement.substring(3*i,(3*i)+2);
+            Character name = placement.charAt(3*i);
+            Character movement = placement.charAt((3*i)+1); //get the moved character
+            Character  location = placement.charAt((3*i) + 2); //get the located character*/
+
+
 
     /**
      * Create a basic text field for input and a refresh button.
@@ -52,6 +96,13 @@ public class Viewer extends Application {
                 textField.clear();
             }
         });
+// enter the number
+        textField.setOnKeyPressed((KeyEvent p) -> {
+            if (p.getCode() == KeyCode.ENTER) {
+                makePlacement(textField.getText());
+                textField.clear();
+            }
+        });
         HBox hb = new HBox();
         hb.getChildren().addAll(label1, textField, button);
         hb.setSpacing(10);
@@ -63,9 +114,30 @@ public class Viewer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Warring States Viewer");
-        Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
+        squareg.setStyle("-fx-background-color: #C0C0C0;");
+        Group root=new Group();
+        for(int i=0;i<6;i++){
+            for(int j=0;j<6;j++){
+                Rectangle square = new Rectangle(i*100,j*100,90,90);
+                if(i==0 && j==0){
+                    square.setFill(Color.BLUE);
+                }
+                root.getChildren().add(square);
+            }
+
+        }
+
+
+
+        Scene scene = new Scene(root, 1000, 1000);
 
         root.getChildren().add(controls);
+
+        BorderPane pane = new BorderPane();
+
+        int count_col=6;
+        int count_row=6;
+        boolean evenflag=true;
 
         makeControls();
 
