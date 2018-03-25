@@ -382,8 +382,7 @@ public class WarringStatesGame {
 
     public static boolean getLine(char locationChar,String placement){
         //zhangyilocation(placement) should known
-        // the location of placement is known
-        // choose the same element in the line
+        // the location of place
         String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
         for(String i: s){
             int distance = i.indexOf(zhangyilocation(placement))-i.indexOf(locationChar);
