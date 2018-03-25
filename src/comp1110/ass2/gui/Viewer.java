@@ -1,6 +1,7 @@
 package comp1110.ass2.gui;
 
 import comp1110.ass2.WarringStatesGame;
+import gittest.C;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -110,6 +112,7 @@ public class Viewer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         primaryStage.setTitle("Warring States Viewer");
         squareg.setStyle("-fx-background-color: #C0C0C0;");
         Group root=new Group();
@@ -118,6 +121,7 @@ public class Viewer extends Application {
                 Rectangle square = new Rectangle(i*100,j*100,90,90);
                 if(i==0 && j==0 ){
                     square.setFill(Color.BLUE);
+                    final Text text= new Text("Duke Xiao 孝公");
                 }
                 else if(i==0 && j==1 ){
                         square.setFill(Color.RED);
@@ -168,7 +172,61 @@ public class Viewer extends Application {
                     square.setFill(Color.BLUE);
                 }
                 else if(i==2 && j==5 ) {
+                    square.setFill(Color.RED);
+                }
+                else if(i==3 && j==0){
+                    square.setFill(Color.BISQUE);
+                }
+                else if(i==3 && j==1){
+                    square.setFill(Color.BLUE);
+                }
+                else if(i==3 && j==2){
+                    square.setFill(Color.GREEN);
+                }
+                else if(i==3 && j==3){
+                    square.setFill(Color.VIOLET);
+                }
+                else if(i==3 && j==4){
+                    square.setFill(Color.RED);
+                }
+                else if(i==3 && j==5){
+                    square.setFill(Color.GREEN);
+                }
+                else if(i==4 && j==0){
+                    square.setFill(Color.TAN);
+                }
+                else if(i==4 && j==1){
+                    square.setFill(Color.VIOLET);
+                }
+                else if(i==4 && j==2){
                     square.setFill(Color.GRAY);
+                }
+                else if(i==4 && j==3){
+                    square.setFill(Color.BISQUE);
+                }
+                else if(i==4 && j==4){
+                    square.setFill(Color.BLUE);
+                }
+                else if(i==4 && j==5){
+                    square.setFill(Color.BEIGE);
+                }
+                else if(i==5 && j==0){
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==5 && j==1){
+                    square.setFill(Color.GRAY);
+                }
+                else if(i==5 && j==2){
+                    square.setFill(Color.RED);
+                }
+                else if(i==5 && j==3){
+                    square.setFill(Color.RED);
+                }
+                else if(i==5 && j==4){
+                    square.setFill(Color.VIOLET);
+                }
+                else if(i==5 && j==5){
+                    square.setFill(Color.VIOLET);
                 }
 
                 root.getChildren().add(square);
@@ -177,7 +235,7 @@ public class Viewer extends Application {
         }
 
 
-        final Scene scene = new Scene(root, 1000, 1000, Color.BEIGE);
+        final Scene scene = new Scene(root, 1000, 1000, Color.LAVENDER);
 
         root.getChildren().add(controls);
 
