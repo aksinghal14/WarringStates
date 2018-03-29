@@ -463,17 +463,6 @@ public class WarringStatesGame {
     }
 
 
-    static int zhangyilocationint(String placement,char zhangyilocation){
-        int i = -1;
-        for(int k = 2 ;k<placement.length();k= k+3){
-            if(placement.charAt(k)==zhangyilocation){
-                return k;
-            }
-
-        }
-        return i;
-    }
-
     static String updatePlacement(String placement,char zhangyilocation, char goallocation){
         String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
         StringBuilder sb = new StringBuilder(placement);
