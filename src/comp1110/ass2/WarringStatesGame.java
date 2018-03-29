@@ -464,44 +464,44 @@ public class WarringStatesGame {
 
 
     static int zhangyilocationint(String placement,char zhangyilocation){
-        int i = 0;
+        int i = -1;
         for(int k = 2 ;k<placement.length();k= k+3){
             if(placement.charAt(k)==zhangyilocation){
-                return (i*3+2);
+                return k;
             }
-            i = i+1;
+
         }
-        return -1;
+        return i;
     }
 
     static String updatePlacement(String placement,char zhangyilocation, char goallocation){
         String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
         StringBuilder sb = new StringBuilder(placement);
+
         char goalState = locationC(goallocation,sb.toString());
         for(String str:s){
+            int a = str.indexOf(zhangyilocation);
+            int b = str.indexOf(goallocation);
             if(str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation)>=0){
-                int a = zhangyilocationint(sb.toString(),zhangyilocation);
-                int b = zhangyilocationint(sb.toString(),goallocation);
-                if(sb.toString().indexOf('z')>=0){
-                    sb.delete(sb.toString().indexOf('z'),sb.toString().indexOf('z')+2);
-                }
                 for(int i=0;i<str.length();i++){
                     if((i>=a && i <=b )|| (i<=a && i>=b)){
                         for(int j= 2 ;j<sb.toString().length();j=j+3){
                             if(sb.toString().charAt(j) == str.charAt(i)){
                                 if(sb.toString().charAt(j-2) == goalState && goallocation != sb.toString().charAt(j)){
-                                    sb.delete((j-2),j);
-
-                                }else if(sb.toString().charAt(j-2) == goalState && goallocation == sb.toString().charAt(j)){
+                                    sb.delete((j-2),j+1);
+                                }else if(goallocation == sb.toString().charAt(j)){
                                     sb.setCharAt(j-1,'9');
                                     sb.setCharAt(j-2,'z');
-
                                 }
+
                             }
                         }
                     }
 
 
+                }
+                if(sb.toString().indexOf('z')>=0){
+                sb.delete(zhangyilocationint(sb.toString(),zhangyilocation)-2,zhangyilocationint(sb.toString(),zhangyilocation)+1);
                 }
             }
         }
