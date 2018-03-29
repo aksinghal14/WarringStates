@@ -373,7 +373,7 @@ public class WarringStatesGame {
 
     public static boolean notNoCard(char locationChar,String placement){
         for(int i = 2; i<=placement.length()-1;i= i+3){
-            if(placement.charAt(i)==locationChar){
+            if(placement.charAt(i)==locationChar&&placement.charAt(i-2)!='z'){
                 return true;
             }
         }
@@ -479,6 +479,9 @@ public class WarringStatesGame {
         StringBuilder sb = new StringBuilder(placement);
 
         char goalState = locationC(goallocation,sb.toString());
+        if(sb.toString().indexOf('z')>=0){
+            sb.delete(sb.toString().indexOf('z'),sb.toString().indexOf('z')+3);
+        }
         for(String str:s){
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
@@ -497,14 +500,11 @@ public class WarringStatesGame {
                             }
                         }
                     }
-
-
                 }
-                if(sb.toString().indexOf('z')>=0){
-                sb.delete(zhangyilocationint(sb.toString(),zhangyilocation)-2,zhangyilocationint(sb.toString(),zhangyilocation)+1);
-                }
+
             }
         }
+
         return sb.toString();
 
     }
