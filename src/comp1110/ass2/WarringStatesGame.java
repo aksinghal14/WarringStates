@@ -440,14 +440,16 @@ public class WarringStatesGame {
         // check all chars in the moveSequence and return true
 
         //char zhangyiinitiallocation = zhangyilocation(setup);
-        boolean b = false;
+        boolean b = true;
 
         String placement = setup;
 
         for(int i=0; i<moveSequence.length();i++){
             if(isMoveLegal(placement,moveSequence.charAt(i))){
                 placement = updatePlacement(placement,zhangyilocation(placement),moveSequence.charAt(i));
-                b = true;
+
+            }else{
+                b=false;
             }
         }
 
@@ -461,29 +463,39 @@ public class WarringStatesGame {
     }
 
 
+    static int zhangyilocationint(String placement,char zhangyilocation){
+        int i = 0;
+        for(int k = 2 ;k<placement.length();k= k+3){
+            if(placement.charAt(k)==zhangyilocation){
+                return (i*3+2);
+            }
+            i = i+1;
+        }
+        return -1;
+    }
+
     static String updatePlacement(String placement,char zhangyilocation, char goallocation){
         String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
-
-        char goalState = locationC(goallocation,placement);
-
+        StringBuilder sb = new StringBuilder(placement);
+        char goalState = locationC(goallocation,sb.toString());
         for(String str:s){
             if(str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation)>=0){
-
-                int a = str.indexOf(zhangyilocation);
-                int b = str.indexOf(goallocation);
-
+                int a = zhangyilocationint(sb.toString(),zhangyilocation);
+                int b = zhangyilocationint(sb.toString(),goallocation);
+                if(sb.toString().indexOf('z')>=0){
+                    sb.delete(sb.toString().indexOf('z'),sb.toString().indexOf('z')+2);
+                }
                 for(int i=0;i<str.length();i++){
+                    if((i>=a && i <=b )|| (i<=a && i>=b)){
+                        for(int j= 2 ;j<sb.toString().length();j=j+3){
+                            if(sb.toString().charAt(j) == str.charAt(i)){
+                                if(sb.toString().charAt(j-2) == goalState && goallocation != sb.toString().charAt(j)){
+                                    sb.delete((j-2),j);
 
-                    if((i>a && i <b )|| (i<a && i>b)){
-                        for(int j=2;j<placement.length();j=j+3){
-                            if(placement.charAt(j) == str.charAt(i)){
-                                if(placement.charAt(j-2) == goalState && goallocation != placement.charAt(j)){
-                                    placement.replace(String.valueOf(placement.charAt(j-2)),"");
-                                    placement.replace(String.valueOf(placement.charAt(j-1)),"");
-                                    placement.replace(String.valueOf(placement.charAt(j)),"");
-                                }else if(placement.charAt(j-2) == goalState && goallocation == placement.charAt(j)){
-                                    placement.replace(String.valueOf(placement.charAt(j-1)),"9");
-                                    placement.replace(String.valueOf(placement.charAt(j-2)),"z");
+                                }else if(sb.toString().charAt(j-2) == goalState && goallocation == sb.toString().charAt(j)){
+                                    sb.setCharAt(j-1,'9');
+                                    sb.setCharAt(j-2,'z');
+
                                 }
                             }
                         }
@@ -493,9 +505,7 @@ public class WarringStatesGame {
                 }
             }
         }
-
-
-        return placement;
+        return sb.toString();
 
     }
     /**
