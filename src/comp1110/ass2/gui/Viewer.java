@@ -10,15 +10,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * A very simple viewer for card layouts in the Warring States game.
@@ -110,36 +116,75 @@ public class Viewer extends Application {
         controls.getChildren().add(hb);
     }
 
+    public void makeLocation(String placement) {
+        for (int i = 0; i < placement.length() / 3; i++) {
+            String country = placement.substring(i, i + 3);
+            char location = country.charAt(0);
+            char name = country.charAt(1);
+            if (location <= 10) {
+
+            }
+            Rectangle square = new Rectangle(location % 6 +, location / 6 +, 90, 90);
+            Text text = new Text();
+            text.setLayoutX(500 + 50);
+            text.setLayoutY(500 + 50);
+
+            if (name == 'a') {
+                square.setFill(Color.RED);
+            } else if (name == 'b') {
+                square.setFill(Color.GRAY);
+
+            }
+        }
+
+    }
+
+}
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        AnchorPane anchorPane = new AnchorPane();
+        Group group = new Group();
         primaryStage.setTitle("Warring States Viewer");
         squareg.setStyle("-fx-background-color: #C0C0C0;");
-        Group root=new Group();
-        for(int i=0;i<6;i++){
-            for(int j=0;j<6;j++){
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
                 Rectangle square = new Rectangle(i*100,j*100,90,90);
+                Text text= new Text();
+                text.setLayoutX(i*100+50);
+                text.setLayoutY(j*100+50);
+
+
                 if(i==0 && j==0 ){
+                    text.setText("ge");
+//                   StackPane pane= new StackPane(square, text);
+//                    Scene scene= new Scene(root);
                     square.setFill(Color.BLUE);
-                    final Text text= new Text("Duke Xiao 孝公");
+//                    text.setFont(Font.font ("Verdana", FontWeight.BOLD, 40));
+//                    text.setFill(Color.BLACK);
+//                    text.setText("Duke Xiao 孝公");
+//                    root.getChildren().addAll(square,text);
+
                 }
                 else if(i==0 && j==1 ){
-                        square.setFill(Color.RED);
+                    text.setText("re");
+
+                    square.setFill(Color.RED);
                 }
                 else if(i==0 && j==2 ) {
-                    square.setFill(Color.BISQUE);
+                   square.setFill(Color.BISQUE);
                 }
                     else if(i==0 && j==3 ) {
-                    square.setFill(Color.BLUE);
+                   square.setFill(Color.BLUE);
                 }
                 else if(i==0 && j==4 ) {
-                    square.setFill(Color.RED);
+                   square.setFill(Color.RED);
                 }
                 else if(i==0 && j==5 ) {
-                    square.setFill(Color.TAN);
+                   square.setFill(Color.TAN);
                 }
                 else if(i==1 && j==1 ) {
-                    square.setFill(Color.RED);
+                   square.setFill(Color.RED);
                 }
                 else if(i==1 && j==2 ) {
                     square.setFill(Color.GRAY);
@@ -190,6 +235,7 @@ public class Viewer extends Application {
                     square.setFill(Color.RED);
                 }
                 else if(i==3 && j==5){
+
                     square.setFill(Color.GREEN);
                 }
                 else if(i==4 && j==0){
@@ -227,13 +273,15 @@ public class Viewer extends Application {
                 }
                 else if(i==5 && j==5){
                     square.setFill(Color.VIOLET);
+
                 }
 
                 root.getChildren().add(square);
+
+                root.getChildren().add(text);
             }
 
-        }
-
+            }
 
         final Scene scene = new Scene(root, 1000, 1000, Color.LAVENDER);
 
@@ -241,13 +289,14 @@ public class Viewer extends Application {
 
         BorderPane pane = new BorderPane();
 
-        int count_col=6;
-        int count_row=6;
-        boolean evenflag=true;
+        int count_col = 6;
+        int count_row = 6;
+        boolean evenflag = true;
 
         makeControls();
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        }
     }
-}
+
