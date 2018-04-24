@@ -308,21 +308,21 @@ public class Viewer extends Application {
                             square.setFill(Color.WHITE);
                         }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('D',placement)-2, getIndexPlacement('D',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('D',placement))))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('D',placement)-2)))));}
                     } else if (i == 5 && j == 4) {
                         ////E////
                         if(getIndexPlacement('E',placement)==0){
                             square.setFill(Color.WHITE);
                         }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('E',placement)-2, getIndexPlacement('E',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('E',placement))))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('E',placement)-2)))));}
                     } else if (i == 5 && j == 5) {
                         /////F/////
                         if(getIndexPlacement('F',placement)==0){
                             square.setFill(Color.WHITE);
                         }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('F',placement)-2, getIndexPlacement('F',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('F',placement))))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('F',placement)-2)))));}
 
                     }
 
