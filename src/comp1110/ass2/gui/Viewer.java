@@ -453,6 +453,7 @@ public class Viewer extends Application {
     String takeCharacter(String p){
         String a = "";
         if(p.charAt(0)=='a'){
+            // qin
             if(p.charAt(1)=='0'){
                 a = "Lady Zhao";
             }else if(p.charAt(1)=='1'){
@@ -471,6 +472,7 @@ public class Viewer extends Application {
                 a = "Shang Yang";
             }
         }else if(p.charAt(0)=='b'){
+            // qi
             if(p.charAt(1)=='0'){
                 a = "King Xuan";
             }else if(p.charAt(1)=='1'){
@@ -486,56 +488,61 @@ public class Viewer extends Application {
             }else if(p.charAt(1)=='6'){
                 a = "Sun Bin";
             }
-        }// not define chu - ---
+        }
         else if(p.charAt(0)=='c'){
+            // chu
             if(p.charAt(1)=='0'){
-                a = "King Xuan";
+                a = "King Kaolie";
             }else if(p.charAt(1)=='1'){
-                a = "King Xian";
+                a = "King Ai";
             }else if(p.charAt(1)=='2'){
-                a = "Queen Junwang";
+                a = "Fu Chu";
             }else if(p.charAt(1)=='3'){
-                a = "King Jian";
+                a = "King You";
             }else if(p.charAt(1)=='4'){
-                a = "Zhong Wuyan";
+                a = "Wu Qi";
             }else if(p.charAt(1)=='5'){
-                a = "Lord Menchang";
+                a = "Lord Chunshen";
             }
         }else if(p.charAt(0)=='d'){
+            // zhao
             if(p.charAt(1)=='0'){
-                a = "King Xuan";
+                a = "King Xiaocheng";
             }else if(p.charAt(1)=='1'){
-                a = "King Xian";
+                a = "King Wuling";
             }else if(p.charAt(1)=='2'){
-                a = "Queen Junwang";
+                a = "Lord Pingyuan";
             }else if(p.charAt(1)=='3'){
-                a = "King Jian";
+                a = "Li Mu";
             }else if(p.charAt(1)=='4'){
-                a = "Zhong Wuyan";
+                a = "Lian Po";
             }
         }else if(p.charAt(0)=='e'){
+            // han
             if(p.charAt(1)=='0'){
-                a = "King Xuan";
+                a = "King Huanhui";
             }else if(p.charAt(1)=='1'){
-                a = "King Xian";
+                a = "King An";
             }else if(p.charAt(1)=='2'){
-                a = "Queen Junwang";
+                a = "Marquess Ai";
             }else if(p.charAt(1)=='3'){
-                a = "King Jian";
+                a = "Han Fei";
             }
         }else if(p.charAt(0)=='f'){
+            //wei
             if(p.charAt(1)=='0'){
-                a = "King Xuan";
+                a = "King Anxi";
             }else if(p.charAt(1)=='1'){
-                a = "King Xian";
+                a = "Lord Xinling";
             }else if(p.charAt(1)=='2'){
-                a = "Queen Junwang";
+                a = "Marquess Wei";
             }
         }else if(p.charAt(0)=='g'){
+            // yan
             if(p.charAt(1)=='0'){
-                a = "King Xuan";
+                a = "King Xi";
             }else if(p.charAt(1)=='1'){
-                a = "King Xian";
+                a = "Prince Dan";
             }
         }else{
             a = "Zhang Yi";
