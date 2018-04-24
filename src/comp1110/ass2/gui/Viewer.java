@@ -67,128 +67,262 @@ public class Viewer extends Application {
                 text.setLayoutX(i * 100 + 50);
                 text.setLayoutY(j * 100 + 50);
 
-                if (placement.length() <= 50) {
-                    // not sure the length -- I do not care
-                } else {
+
                     if (i == 0 && j == 0) {
-                        text.setText(takeCharacter(textField.getText().substring(90, 92)));
-//                   StackPane pane= new StackPane(square, text);
-//                    Scene scene= new Scene(root);
-                        square.setFill(Color.web(takeKingdom(String.valueOf(textField.getText().charAt(90)))));
-//                    text.setFont(Font.font ("Verdana", FontWeight.BOLD, 40));
-//                    text.setFill(Color.BLACK);
-//                    text.setText("Duke Xiao 孝公");
-//                    root.getChildren().addAll(square,text);
-
+                        //4
+                        if(getIndexPlacement('4',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('4',placement)-2, getIndexPlacement('4',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('4',placement)-2)))));}
                     } else if (i == 0 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(93, 95)));
-
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(93)))));
+                        //5
+                        if(getIndexPlacement('5',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('5',placement)-2, getIndexPlacement('5',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('5',placement)-2)))));}
                     } else if (i == 0 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(96, 98)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(textField.getText().charAt(96)))));
+                        //6
+                        if(getIndexPlacement('6',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('6',placement)-2, getIndexPlacement('6',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('6',placement)-2)))));}
                     } else if (i == 0 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(99, 101)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(textField.getText().charAt(99)))));
+                        //7
+                        if(getIndexPlacement('7',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('7',placement)-2, getIndexPlacement('7',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('7',placement)-2)))));}
                     } else if (i == 0 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(102, 104)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(102)))));
+                        //8
+                        if(getIndexPlacement('8',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('8',placement)-2, getIndexPlacement('8',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('8',placement)-2)))));}
 
                     } else if (i == 0 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(105, 107)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(105)))));
+//9
+                        if(getIndexPlacement('9',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('9',placement)-2, getIndexPlacement('9',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('9',placement)-2)))));}
                     } else if (i == 1 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(75, 77)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(75)))));
+                        // Z
+                        if(getIndexPlacement('Z',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('Z',placement)-2, getIndexPlacement('Z',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Z',placement)-2)))));}
                     } else if (i == 1 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(78, 80)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(78)))));
+                        // 0
+                        if(getIndexPlacement('0',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('0',placement)-2, getIndexPlacement('0',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('0',placement)-2)))));}
                     } else if (i == 1 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(81, 83)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(81)))));
+                        // 1
+                        if(getIndexPlacement('1',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('1',placement)-2, getIndexPlacement('1',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('1',placement)-2)))));}
                     } else if (i == 1 && j == 0) {
-                        text.setText(takeCharacter(placement.substring(72, 74)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(72)))));
+                        // Y
+                        if(getIndexPlacement('Y',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('Y',placement)-2, getIndexPlacement('Y',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Y',placement)-2)))));}
 
                     } else if (i == 1 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(84, 86)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(84)))));
+                        //2
+                        if(getIndexPlacement('2',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('2',placement)-2, getIndexPlacement('2',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('2',placement)-2)))));}
                     } else if (i == 1 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(87, 89)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(87)))));
+                        //3
+                        if(getIndexPlacement('3',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('3',placement)-2, getIndexPlacement('3',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('3',placement)-2)))));}
                     } else if (i == 2 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(60, 62)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(60)))));
+                        //U
+                        if(getIndexPlacement('U',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('U',placement)-2, getIndexPlacement('U',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('U',placement)-2)))));}
                     } else if (i == 2 && j == 0) {
-                        text.setText(takeCharacter(placement.substring(54, 56)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(54)))));
+                        //S
+                        if(getIndexPlacement('S',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('S',placement)-2, getIndexPlacement('S',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('S',placement)-2)))));}
                     } else if (i == 2 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(57, 59)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(57)))));
+                        //T
+                        if(getIndexPlacement('T',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('T',placement)-2, getIndexPlacement('T',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('T',placement)-2)))));}
                     } else if (i == 2 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(63, 65)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(63)))));
+                        //V
+                        if(getIndexPlacement('V',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('V',placement)-2, getIndexPlacement('V',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('V',placement)-2)))));}
                     } else if (i == 2 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(66, 68)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(66)))));
+                        //W
+                        if(getIndexPlacement('W',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('W',placement)-2, getIndexPlacement('W',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('W',placement)-2)))));}
                     } else if (i == 2 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(69, 71)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(69)))));
-                    } else if (i == 3 && j == 0) {
-                        text.setText(takeCharacter(placement.substring(36, 38)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(36)))));
-                    } else if (i == 3 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(39, 41)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(39)))));
-                    } else if (i == 3 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(42, 44)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(42)))));
-                    } else if (i == 3 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(45, 47)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(45)))));
-                    } else if (i == 3 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(48, 50)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(48)))));
-                    } else if (i == 3 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(51, 53)));
+                        //X
+                        if(getIndexPlacement('X',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('X',placement)-2, getIndexPlacement('X',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('X',placement)-2)))));}
 
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(51)))));
+                    } else if (i == 3 && j == 0) {
+                        // M
+                        if(getIndexPlacement('M',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('M',placement)-2, getIndexPlacement('M',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('M',placement)-2)))));}
+                    } else if (i == 3 && j == 1) {
+                        // N
+                        if(getIndexPlacement('N',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('N',placement)-2, getIndexPlacement('N',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('N',placement)-2)))));}
+                    } else if (i == 3 && j == 2) {
+                        // O
+                        if(getIndexPlacement('O',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('O',placement)-2, getIndexPlacement('O',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('O',placement)-2)))));}
+                    } else if (i == 3 && j == 3) {
+                        // P
+                        if(getIndexPlacement('P',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('P',placement)-2, getIndexPlacement('P',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('P',placement)-2)))));}
+                    } else if (i == 3 && j == 4) {
+                        //Q
+                        if(getIndexPlacement('Q',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('Q',placement)-2, getIndexPlacement('Q',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Q',placement)-2)))));}
+                    } else if (i == 3 && j == 5) {
+                        //R
+                        if(getIndexPlacement('R',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('R',placement)-2, getIndexPlacement('R',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('R',placement)-2)))));}
                     } else if (i == 4 && j == 0) {
-                        text.setText(takeCharacter(placement.substring(18, 20)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(18)))));
+                        ////G
+                        if(getIndexPlacement('G',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('G',placement)-2, getIndexPlacement('G',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('G',placement)-2)))));}
                     } else if (i == 4 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(21, 23)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(21)))));
+                        ////H
+                        if(getIndexPlacement('H',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('H',placement)-2, getIndexPlacement('H',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('H',placement)-2)))));}
                     } else if (i == 4 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(24, 26)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(24)))));
+                        ////I///
+                        if(getIndexPlacement('I',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('I',placement)-2, getIndexPlacement('I',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('I',placement)-2)))));}
                     } else if (i == 4 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(27, 29)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(27)))));
+                        ////J////
+                        if(getIndexPlacement('J',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('J',placement)-2, getIndexPlacement('J',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('J',placement)-2)))));}
                     } else if (i == 4 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(30, 32)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(30)))));
+                        /////K///
+                        if(getIndexPlacement('K',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('K',placement)-2, getIndexPlacement('K',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('K',placement)-2)))));}
                     } else if (i == 4 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(33, 35)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(33)))));
+                        ////L////
+                        if(getIndexPlacement('L',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                            text.setText(takeCharacter(placement.substring(getIndexPlacement('L',placement)-2, getIndexPlacement('L',placement)+1)));
+                            square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('L',placement)-2)))));}
                     } else if (i == 5 && j == 0) {
-                        text.setText(takeCharacter(placement.substring(0, 2)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(0)))));
+                        /// A ///
+                        if(getIndexPlacement('A',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('A',placement)-2, getIndexPlacement('A',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('A',placement)-2)))));}
                     } else if (i == 5 && j == 1) {
-                        text.setText(takeCharacter(placement.substring(3, 5)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(3)))));
+                        ///B/////
+                        if(getIndexPlacement('B',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('B',placement)-2, getIndexPlacement('B',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('B',placement)-2)))));}
                     } else if (i == 5 && j == 2) {
-                        text.setText(takeCharacter(placement.substring(6, 8)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(6)))));
+                        /// C/////
+                        if(getIndexPlacement('C',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('C',placement)-2, getIndexPlacement('C',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('C',placement)-2)))));}
                     } else if (i == 5 && j == 3) {
-                        text.setText(takeCharacter(placement.substring(9, 11)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(9)))));
+                        ////D////
+                        if(getIndexPlacement('D',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('D',placement)-2, getIndexPlacement('D',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('D',placement))))));}
                     } else if (i == 5 && j == 4) {
-                        text.setText(takeCharacter(placement.substring(12, 14)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(12)))));
+                        ////E////
+                        if(getIndexPlacement('E',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('E',placement)-2, getIndexPlacement('E',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('E',placement))))));}
                     } else if (i == 5 && j == 5) {
-                        text.setText(takeCharacter(placement.substring(15, 17)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(15)))));
+                        /////F/////
+                        if(getIndexPlacement('F',placement)==0){
+                            square.setFill(Color.WHITE);
+                        }else{
+                        text.setText(takeCharacter(placement.substring(getIndexPlacement('F',placement)-2, getIndexPlacement('F',placement)+1)));
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('F',placement))))));}
 
                     }
 
@@ -205,7 +339,6 @@ public class Viewer extends Application {
                 //Character location = placement.charAt((3 * i) + 2); //get the located character
             }
         }
-    }
 
 /*public void rect (Stage primarystage){
             AnchorPane root = new AnchorPane();
@@ -278,6 +411,16 @@ public class Viewer extends Application {
         }
 
     }*/
+   int getIndexPlacement(Character p,String pl){
+       int i = 0;
+       int j =0;
+       for( i = 2; i <pl.length();i=i+3){
+           if(pl.charAt(i)==p){
+               j = i;
+           }
+       }
+       return j;
+   }
     String takeKingdom(String p){
         String s ="";
         switch (p){
