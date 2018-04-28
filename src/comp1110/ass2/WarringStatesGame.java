@@ -1,5 +1,10 @@
 package comp1110.ass2;
 
+
+
+import java.util.Arrays;
+
+
 /**
  * This class provides the text interface for the Warring States game
  */
@@ -24,66 +29,66 @@ public class WarringStatesGame {
         boolean b2 = false;
         boolean b3 = false;
 
-        if((cardPlacement.charAt(0) >= 'a' && cardPlacement.charAt(0) <= 'g')||cardPlacement.charAt(0) == 'z'){
+        if ((cardPlacement.charAt(0) >= 'a' && cardPlacement.charAt(0) <= 'g') || cardPlacement.charAt(0) == 'z') {
             b1 = true;
-        }else{
+        } else {
             b1 = false;
         }
 
-        if(cardPlacement.charAt(0) == 'a'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='7'){
+        if (cardPlacement.charAt(0) == 'a') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '7') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'b'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='6' ){
+        } else if (cardPlacement.charAt(0) == 'b') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '6') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'c'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='5' ){
+        } else if (cardPlacement.charAt(0) == 'c') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '5') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'd'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='4' ){
+        } else if (cardPlacement.charAt(0) == 'd') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '4') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'e'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='3' ){
+        } else if (cardPlacement.charAt(0) == 'e') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '3') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'f'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='2' ){
+        } else if (cardPlacement.charAt(0) == 'f') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '2') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'g'){
-            if(cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1)<='1' ){
+        } else if (cardPlacement.charAt(0) == 'g') {
+            if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '1') {
                 b2 = true;
             }
-        }else if(cardPlacement.charAt(0) == 'z'){
-            if(cardPlacement.charAt(1) == '9'){
+        } else if (cardPlacement.charAt(0) == 'z') {
+            if (cardPlacement.charAt(1) == '9') {
                 b2 = true;
             }
-        }else{
+        } else {
             b2 = false;
         }
 
 
-        if((cardPlacement.charAt(2) >='A' && cardPlacement.charAt(2)<='Z')||(cardPlacement.charAt(2)>='0'&&cardPlacement.charAt(2)<='9')){
+        if ((cardPlacement.charAt(2) >= 'A' && cardPlacement.charAt(2) <= 'Z') || (cardPlacement.charAt(2) >= '0' && cardPlacement.charAt(2) <= '9')) {
             b3 = true;
-        }else{
+        } else {
             b3 = false;
         }
 
-        if(b1 && b2 && b3){
+        if (b1 && b2 && b3) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    static String[] getCardPlacement(String placement){
-        String[] card = new String[placement.length()/3];
+    static String[] getCardPlacement(String placement) {
+        String[] card = new String[placement.length() / 3];
 
-        if (placement.length()%3 == 0){
+        if (placement.length() % 3 == 0) {
             int j = 0;
             for (int i = 0; i < placement.length(); i = i + 3) {
                 card[j] = placement.substring(i, i + 3);
@@ -92,11 +97,13 @@ public class WarringStatesGame {
         }
         return card;
     }
-    static char getCardLocation(String cardPlacement){
+
+    static char getCardLocation(String cardPlacement) {
         return cardPlacement.charAt(2);
     }
-    static String getCardStates(String cardPlacement){
-        return cardPlacement.substring(0,2);
+
+    static String getCardStates(String cardPlacement) {
+        return cardPlacement.substring(0, 2);
     }
 
     /**
@@ -122,61 +129,61 @@ public class WarringStatesGame {
         boolean b3 = false;
 
 
-        if(placement != null && placement !=""){
+        if (placement != null && placement != "") {
 
             b0 = true;
 
-            if(placement.length()%3 == 0){
+            if (placement.length() % 3 == 0) {
 
-                int countb1 =0;
-                int countb2 =0;
-                int countb3 =0;
+                int countb1 = 0;
+                int countb2 = 0;
+                int countb3 = 0;
 
-                for(int i=0;i<placement.length()/3;i=i+3){
-                    b1 = isCardPlacementWellFormed(placement.substring(i,i+3));
-                    if(b1 == false){
+                for (int i = 0; i < placement.length() / 3; i = i + 3) {
+                    b1 = isCardPlacementWellFormed(placement.substring(i, i + 3));
+                    if (b1 == false) {
                         countb1++;
                     }
                 }
-                if(countb1==0){
+                if (countb1 == 0) {
                     b1 = true;
                 }
 
                 String[] card = getCardPlacement(placement);
 
-                String[] cardstate = new String[placement.length()/3];
-                char[] cardlocation = new char[placement.length()/3];
+                String[] cardstate = new String[placement.length() / 3];
+                char[] cardlocation = new char[placement.length() / 3];
 
-                for(int i=0;i<card.length;i++){
+                for (int i = 0; i < card.length; i++) {
                     cardstate[i] = getCardStates(card[i]);
                     cardlocation[i] = getCardLocation(card[i]);
                 }
 
-                for(int i=0;i<cardstate.length;i++){
-                    for(int j=i+1;j<cardstate.length;j++){
-                        if(cardstate[i].equals(cardstate[j])){
+                for (int i = 0; i < cardstate.length; i++) {
+                    for (int j = i + 1; j < cardstate.length; j++) {
+                        if (cardstate[i].equals(cardstate[j])) {
                             countb2++;
                         }
                     }
                 }
-                if(countb2==0){
+                if (countb2 == 0) {
                     b2 = true;
                 }
 
-                for(int i=0;i<cardlocation.length;i++){
-                    for(int j=i+1;j<cardlocation.length;j++){
-                        if(cardlocation[i]==cardlocation[j]){
+                for (int i = 0; i < cardlocation.length; i++) {
+                    for (int j = i + 1; j < cardlocation.length; j++) {
+                        if (cardlocation[i] == cardlocation[j]) {
                             countb3++;
                         }
                     }
                 }
-                if(countb3==0){
+                if (countb3 == 0) {
                     b3 = true;
                 }
 
             }
 
-        }else{
+        } else {
             b0 = false;
         }
 
@@ -303,9 +310,9 @@ public class WarringStatesGame {
         }*/
 
 
-        if(b0 && b1 && b2 && b3){
+        if (b0 && b1 && b2 && b3) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -317,8 +324,9 @@ public class WarringStatesGame {
      * - there is a card at the chosen location;
      * - the location is in the same row or column of the grid as Zhang Yi's current position; and
      * - drawing a line from Zhang Yi's current location through the card at the chosen location,
-     *   there are no other cards along the line from the same kingdom as the chosen card
-     *   that are further away from Zhang Yi.
+     * there are no other cards along the line from the same kingdom as the chosen card
+     * that are further away from Zhang Yi.
+     *
      * @param placement    the current placement string
      * @param locationChar a location for Zhang Yi to move to
      * @return true if Zhang Yi may move to that location
@@ -332,67 +340,69 @@ public class WarringStatesGame {
         //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
         String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         // if the char in the range
-        if(c.indexOf(locationChar)>=0){
+        if (c.indexOf(locationChar) >= 0) {
             // check the zhangyi in the range of 0-9 or A-Z
             // check char location and the zhangyi in the same line
-            if(getLine(locationChar,placement)&&c.indexOf(zhangyilocation(placement))>=0 && isInSameLine(zhangyilocation(placement),locationChar)&&notNoCard(locationChar,placement)){
-                    return true;
+            if (getLine(locationChar, placement) && c.indexOf(zhangyilocation(placement)) >= 0 && isInSameLine(zhangyilocation(placement), locationChar) && notNoCard(locationChar, placement)) {
+                return true;
             }
         }
         return false;
     }
+
     // to find the location of zhangyi
-    public static char zhangyilocation(String placement){
-        return placement.charAt(placement.indexOf('z')+2);
+    public static char zhangyilocation(String placement) {
+        return placement.charAt(placement.indexOf('z') + 2);
     }
-    public static char locationC(char locationChar,String placement){
-        for(int q =2;q< placement.length();q= q+3 ){
-            if(placement.charAt(q)== locationChar){
-                return placement.charAt(q-2);
+
+    public static char locationC(char locationChar, String placement) {
+        for (int q = 2; q < placement.length(); q = q + 3) {
+            if (placement.charAt(q) == locationChar) {
+                return placement.charAt(q - 2);
             }
         }
         return '1';
     }
 
-    public static boolean isInSameLine(char zhangyilocation,char locationChar){
-        String[] row = new String[]{"4YSMGA","5ZTNHB","60UOIC","71VPJD","82WQKE","93XRLF"};
-        String[] column = new String[]{"ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
-        for(String s:row){
+    public static boolean isInSameLine(char zhangyilocation, char locationChar) {
+        String[] row = new String[]{"4YSMGA", "5ZTNHB", "60UOIC", "71VPJD", "82WQKE", "93XRLF"};
+        String[] column = new String[]{"ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+        for (String s : row) {
             // check the location should be the same line
-            if(s.indexOf(locationChar)>=0&&s.indexOf(zhangyilocation)>=0){
+            if (s.indexOf(locationChar) >= 0 && s.indexOf(zhangyilocation) >= 0) {
                 return true;
             }
         }
-        for(String c :column){
-            if(c.indexOf(locationChar)>=0 &&c.indexOf(zhangyilocation)>=0) {
-               return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean notNoCard(char locationChar,String placement){
-        for(int i = 2; i<=placement.length()-1;i= i+3){
-            if(placement.charAt(i)==locationChar&&placement.charAt(i-2)!='z'){
+        for (String c : column) {
+            if (c.indexOf(locationChar) >= 0 && c.indexOf(zhangyilocation) >= 0) {
                 return true;
             }
         }
         return false;
     }
 
+    public static boolean notNoCard(char locationChar, String placement) {
+        for (int i = 2; i <= placement.length() - 1; i = i + 3) {
+            if (placement.charAt(i) == locationChar && placement.charAt(i - 2) != 'z') {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public static boolean getLine(char locationChar,String placement){
+
+    public static boolean getLine(char locationChar, String placement) {
         //zhangyilocation(placement) should known
         // the location of place
-        String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
-        for(String i: s){
-            int distance = i.indexOf(zhangyilocation(placement))-i.indexOf(locationChar);
+        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+        for (String i : s) {
+            int distance = i.indexOf(zhangyilocation(placement)) - i.indexOf(locationChar);
             int d = Math.abs(distance);
-            if(i.indexOf(locationChar)>=0 && i.indexOf(zhangyilocation(placement))>=0){
+            if (i.indexOf(locationChar) >= 0 && i.indexOf(zhangyilocation(placement)) >= 0) {
                 // find the string of zhangyi and next move
-                for(int k  = 0; k < i.length();k = k+1){
-                    for(int u = 2;u<placement.length();u = u+3){
-                        if(i.indexOf(locationChar)>=i.indexOf(zhangyilocation(placement))&& k>i.indexOf(zhangyilocation(placement))) {
+                for (int k = 0; k < i.length(); k = k + 1) {
+                    for (int u = 2; u < placement.length(); u = u + 3) {
+                        if (i.indexOf(locationChar) >= i.indexOf(zhangyilocation(placement)) && k > i.indexOf(zhangyilocation(placement))) {
                             if (i.charAt(k) == placement.charAt(u)) {
                                 if (placement.charAt(u - 2) == locationC(locationChar, placement)) {
                                     int b1 = i.indexOf(zhangyilocation(placement)) - k;
@@ -402,22 +412,22 @@ public class WarringStatesGame {
                                     }
                                 }
                             }
-                        }else if(i.indexOf(locationChar)<i.indexOf(zhangyilocation(placement))&& k<i.indexOf(zhangyilocation(placement)) ){
-                            if(i.charAt(k)==placement.charAt(u)) {
-                                if(placement.charAt(u-2)==locationC(locationChar,placement)){
+                        } else if (i.indexOf(locationChar) < i.indexOf(zhangyilocation(placement)) && k < i.indexOf(zhangyilocation(placement))) {
+                            if (i.charAt(k) == placement.charAt(u)) {
+                                if (placement.charAt(u - 2) == locationC(locationChar, placement)) {
                                     int c1 = i.indexOf(zhangyilocation(placement)) - k;
                                     int c2 = Math.abs(c1);
-                                    if(c2>d){
+                                    if (c2 > d) {
                                         return false;
                                     }
                                 }
                             }
                         }
-                            }
-                        }
                     }
-
                 }
+            }
+
+        }
         return true;
     }
 
@@ -445,46 +455,43 @@ public class WarringStatesGame {
 
         String placement = setup;
 
-        for(int i=0; i<moveSequence.length();i++){
-            if(isMoveLegal(placement,moveSequence.charAt(i))){
-                placement = updatePlacement(placement,zhangyilocation(placement),moveSequence.charAt(i));
+        for (int i = 0; i < moveSequence.length(); i++) {
+            if (isMoveLegal(placement, moveSequence.charAt(i))) {
+                placement = updatePlacement(placement, zhangyilocation(placement), moveSequence.charAt(i));
 
-            }else{
-                b=false;
+            } else {
+                b = false;
             }
         }
 
 
-        if(b){
+        if (b) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
-
-
-
-    static String updatePlacement(String placement,char zhangyilocation, char goallocation){
-        String[] s = new String[]{"AGMSY4","BHNTZ5","CIOU06","DJPV17","EKQW28","FLRX39","ABCDEF","GHIJKL","MNOPQR","STUVWX","YZ0123","456789"};
+    static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
+        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
         StringBuilder sb = new StringBuilder(placement);
-        char goalState = locationC(goallocation,sb.toString());
-        if(sb.toString().indexOf('z')>=0){
-            sb.delete(sb.toString().indexOf('z'),sb.toString().indexOf('z')+3);
+        char goalState = locationC(goallocation, sb.toString());
+        if (sb.toString().indexOf('z') >= 0) {
+            sb.delete(sb.toString().indexOf('z'), sb.toString().indexOf('z') + 3);
         }
-        for(String str:s){
+        for (String str : s) {
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
-            if(str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation)>=0){
-                for(int i=0;i<str.length();i++){
-                    if((i>=a && i <=b )|| (i<=a && i>=b)){
-                        for(int j= 2 ;j<sb.toString().length();j=j+3){
-                            if(sb.toString().charAt(j) == str.charAt(i)){
-                                if(sb.toString().charAt(j-2) == goalState && goallocation != sb.toString().charAt(j)){
-                                    sb.delete((j-2),j+1);
-                                }else if(goallocation == sb.toString().charAt(j)){
-                                    sb.setCharAt(j-1,'9');
-                                    sb.setCharAt(j-2,'z');
+            if (str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation) >= 0) {
+                for (int i = 0; i < str.length(); i++) {
+                    if ((i >= a && i <= b) || (i <= a && i >= b)) {
+                        for (int j = 2; j < sb.toString().length(); j = j + 3) {
+                            if (sb.toString().charAt(j) == str.charAt(i)) {
+                                if (sb.toString().charAt(j - 2) == goalState && goallocation != sb.toString().charAt(j)) {
+                                    sb.delete((j - 2), j + 1);
+                                } else if (goallocation == sb.toString().charAt(j)) {
+                                    sb.setCharAt(j - 1, '9');
+                                    sb.setCharAt(j - 2, 'z');
                                 }
 
                             }
@@ -494,10 +501,56 @@ public class WarringStatesGame {
 
             }
         }
-
         return sb.toString();
-
     }
+    public static String WinCard(String setup,String moveSequence,char goallocation) {
+        String sb = "";
+        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+        for(String a :s) {
+            if (moveSequence.indexOf(goallocation) == 0) {
+                if (a.indexOf(zhangyilocation(setup)) >= 0 && a.indexOf(goallocation) >= 0) {
+                    if (a.indexOf(zhangyilocation(setup)) > a.indexOf(goallocation)) {
+                        for (int i = a.indexOf(goallocation) + 1; i < a.indexOf(zhangyilocation(setup)); i++) {
+                            if (getCard(setup, a.charAt(i)).charAt(0) == getCard(setup, goallocation).charAt(0)) {
+                                sb = sb + getCard(setup, a.charAt(i));
+                            }
+                        }
+                    } else {
+                        for (int i = a.indexOf(zhangyilocation(setup)) + 1; i < a.indexOf(goallocation); i++) {
+                            if (getCard(setup, a.charAt(i)).charAt(0) == getCard(setup, goallocation).charAt(0)) {
+                                sb = sb + getCard(setup, a.charAt(i));
+                            }
+                        }
+                    }
+                }
+            } else{
+            for(int l = 0; l<moveSequence.indexOf(goallocation);l++){
+                setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(l));
+            }
+                if(a.indexOf(goallocation)>=0&&a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))>=0){
+                    if(a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))>a.indexOf(goallocation)){
+                        for(int i = a.indexOf(goallocation)+1;i<a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1));i++){
+                            if(!getCard(setup,a.charAt(i)).equals("")){
+                                if(getCard(setup,a.charAt(i)).charAt(0)==getCard(setup,goallocation).charAt(0)){
+                                    sb = sb+getCard(setup,a.charAt(i));
+                                }
+                            }
+                        }
+                    }else{
+                        for(int i = a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))+1;i<a.indexOf(goallocation);i++){
+                            if(!getCard(setup,a.charAt(i)).equals("")){
+                                 if(getCard(setup,a.charAt(i)).charAt(0)==getCard(setup,goallocation).charAt(0)){
+                                      sb = sb+getCard(setup,a.charAt(i));
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return sb;
+        }
+
 
     /**
      * Get the list of supporters for the chosen player, given the provided
@@ -517,9 +570,74 @@ public class WarringStatesGame {
         // use the for loop or something else to  extract the elements in each list of list with the playerId(index)
         // combine elements and return a string
         // transfer the string to a 2-char-string(a-g,0-7)
-        return null;
+        String supporter = "";
+        if (isMoveSequenceValid(setup, moveSequence)) {
+            if(moveSequence.length()%numPlayers==0||moveSequence.length()%numPlayers<playerId+1){
+            for (int i = 0; i < (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
+                supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers)) +WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
+                // should get the currect card between move seq
+             }
+            }else if (moveSequence.length()%numPlayers>=playerId+1){
+                for (int i = 0; i <= (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
+                    supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers))+WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
+                }
+            }
+        }
+        supporter = sortCard(supporter);
+        return supporter;
     }
 
+    public static String sortCard(String supporter) {
+        String a = "";
+        String d = "";
+        String e = "";
+
+        for (int i = 0; i < supporter.length(); i = i + 2) {
+            a = a + supporter.charAt(i);
+        }
+        for (int z = 1; z < supporter.length(); z = z + 2) {
+            e = e + supporter.charAt(z);
+        }
+        char[] b = a.toCharArray();
+        Arrays.sort(b);
+        String c = b.toString();
+        for (int j = 0; j < b.length - 1; j++) {
+            if (b[j] != b[j + 1]) {
+                if (j == b.length - 2) {
+                    d = d + b[j] + supporter.charAt(supporter.indexOf(b[j]) + 1) + b[b.length-1] + supporter.charAt(supporter.indexOf(b[b.length-1]) + 1);
+                } else {
+                    d = d + b[j] + supporter.charAt(supporter.indexOf(b[j]) + 1);
+                }
+            } else {
+                String str = "";
+                for (int k = 0; k < supporter.length(); k = k + 2) {
+                    if (supporter.charAt(k) == b[j]) {
+                        str = str + supporter.charAt(k + 1);
+                    }
+                }
+                char[] f = str.toCharArray();
+                Arrays.sort(f);
+                for (char q : f) {
+                    d = d + b[j] + q;
+                }
+
+                j = j + f.length - 1;
+                if(j==b.length-2){
+                    d = d + b[b.length-1] + supporter.charAt(supporter.indexOf(b[b.length-1]) + 1);
+                }
+
+            }
+        }
+        return d;
+    }
+    public static String getCard(String setup,char s ){
+        for(int j = 2; j<setup.length();j = j+3){
+            if(setup.charAt(j)==s){
+                return setup.substring(j-2,j);
+            }
+        }
+        return "";
+    }
     /**
      * Given a setup and move sequence, determine which player controls the flag of each kingdom
      * after all the moves in the sequence have been played.
