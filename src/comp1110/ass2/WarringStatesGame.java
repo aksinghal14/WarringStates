@@ -586,7 +586,7 @@ public class WarringStatesGame {
         return supporter;
     }
 
-    public static String sortCard(String supporter) {
+    private static String sortCard(String supporter) {
         String a = "";
         String d = "";
         String e = "";
@@ -629,7 +629,7 @@ public class WarringStatesGame {
         }
         return d;
     }
-    public static String getCard(String setup,char s ){
+    private static String getCard(String setup,char s ){
         for(int j = 2; j<setup.length();j = j+3){
             if(setup.charAt(j)==s){
                 return setup.substring(j-2,j);
