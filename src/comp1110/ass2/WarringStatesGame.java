@@ -337,6 +337,7 @@ public class WarringStatesGame {
         //check the third character of the string placement equals to locationChar
         //compares the third character of the string placement and the locationChar
         //compares the third character and then compares the second character of the string placement whether there are the same.
+
         //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
         String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         // if the char in the range
@@ -389,7 +390,6 @@ public class WarringStatesGame {
         }
         return false;
     }
-
 
     public static boolean getLine(char locationChar, String placement) {
         //zhangyilocation(placement) should known
@@ -550,7 +550,6 @@ public class WarringStatesGame {
         }
         return sb;
         }
-
 
     /**
      * Get the list of supporters for the chosen player, given the provided
