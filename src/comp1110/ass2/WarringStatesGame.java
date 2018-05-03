@@ -2,7 +2,13 @@ package comp1110.ass2;
 
 
 
+import java.lang.reflect.Array;
+
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 
 /**
@@ -582,11 +588,11 @@ public class WarringStatesGame {
                 }
             }
         }
-        supporter = sortCard(supporter);
+        //supporter = sortCard(supporter);
         return supporter;
     }
 
-    private static String sortCard(String supporter) {
+    /*private static String sortCard(String supporter) {
         String a = "";
         String d = "";
         String e = "";
@@ -628,7 +634,7 @@ public class WarringStatesGame {
             }
         }
         return d;
-    }
+    }*/
     private static String getCard(String setup,char s ){
         for(int j = 2; j<setup.length();j = j+3){
             if(setup.charAt(j)==s){
@@ -663,9 +669,53 @@ public class WarringStatesGame {
         // if no one has this flag, add (-1) to the list.
         // ps: if there are the same number of flag, go back to the string of each player and get the index of the last appearance of this char
         // then add the playerId to the list
-        return null;
+        int[] flag = new int[7];
+        String kingdom = "abcdefg";
+        for (int a = 0; a < flag.length; a++) {
+            int j = 0;// the number of flag in per player
+            Integer[] flagOfOne = new Integer[numPlayers];
+            for (int i = 0; i < numPlayers; i++) {
+                String s = getSupporters(setup, moveSequence, numPlayers, i);
+                flagOfOne[i] = getNumberOfKingdom(s, kingdom.charAt(a));
+            }
+            int max = Collections.max(Arrays.asList(flagOfOne));
+            ArrayList<Integer> takeSameNumber = new ArrayList<>();
+            ArrayList<Integer> takePlayerId = new ArrayList<>();
+            for (int m = 0; m < flagOfOne.length; m++) {
+                if (flagOfOne[m]==max) {
+                    j++;
+                    takeSameNumber.add(m);
+                }
+            }
+            if(max !=0){
+                if(j>1){
+                    for(int i =moveSequence.length()-1;i>=0;i--){
+                        if(getCard(setup,moveSequence.charAt(i)).charAt(0)==kingdom.charAt(a)){
+                            int h = i%numPlayers;
+                            if(takeSameNumber.contains(h)){
+                                flag[a] = h;
+                                break;
+                            }
+                        }
+                    }
+                }else{
+            flag[a] =takeSameNumber.get(0);}
+            }else{
+                flag[a]= -1;
+            }
+        }
+        return flag;
     }
 
+    public static int getNumberOfKingdom(String getSupporter,char k){
+        int j = 0;
+        for (int i =0;i<getSupporter.length();i= i+2){
+            if(getSupporter.charAt(i)==k){
+                j = j+1;
+            }
+        }
+        return j;
+    }
     /**
      * Generate a legal move, given the provided placement string.
      * A move is valid if:
