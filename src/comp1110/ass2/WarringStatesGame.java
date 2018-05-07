@@ -512,46 +512,30 @@ public class WarringStatesGame {
     public static String WinCard(String setup,String moveSequence,char goallocation) {
         String sb = "";
         String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
-        for(String a :s) {
-            if (moveSequence.indexOf(goallocation) == 0) {
-                if (a.indexOf(zhangyilocation(setup)) >= 0 && a.indexOf(goallocation) >= 0) {
-                    if (a.indexOf(zhangyilocation(setup)) > a.indexOf(goallocation)) {
-                        for (int i = a.indexOf(goallocation) + 1; i < a.indexOf(zhangyilocation(setup)); i++) {
-                            if (getCard(setup, a.charAt(i)).charAt(0) == getCard(setup, goallocation).charAt(0)) {
-                                sb = sb + getCard(setup, a.charAt(i));
-                            }
-                        }
-                    } else {
-                        for (int i = a.indexOf(zhangyilocation(setup)) + 1; i < a.indexOf(goallocation); i++) {
-                            if (getCard(setup, a.charAt(i)).charAt(0) == getCard(setup, goallocation).charAt(0)) {
-                                sb = sb + getCard(setup, a.charAt(i));
-                            }
-                        }
-                    }
-                }
-            } else{
-            for(int l = 0; l<moveSequence.indexOf(goallocation);l++){
-                setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(l));
-            }
-                if(a.indexOf(goallocation)>=0&&a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))>=0){
-                    if(a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))>a.indexOf(goallocation)){
-                        for(int i = a.indexOf(goallocation)+1;i<a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1));i++){
-                            if(!getCard(setup,a.charAt(i)).equals("")){
-                                if(getCard(setup,a.charAt(i)).charAt(0)==getCard(setup,goallocation).charAt(0)){
-                                    sb = sb+getCard(setup,a.charAt(i));
-                                }
+        for(int i =0;i<moveSequence.length();i++){
+            if(moveSequence.charAt(i)==goallocation){
+                char zhangyi = zhangyilocation(setup);
+                for(String str:s){
+                    int zhangyiIndex = str.indexOf(zhangyi);
+                    int goalIndex = str.indexOf(goallocation);
+                if(zhangyiIndex>=0&&goalIndex>=0){
+                    if(zhangyiIndex>goalIndex){
+                        for(int k =goalIndex+1;k<zhangyiIndex;k++){
+                            if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
+                                sb = sb+getCard(setup,str.charAt(k));
                             }
                         }
                     }else{
-                        for(int i = a.indexOf(moveSequence.charAt(moveSequence.indexOf(goallocation)-1))+1;i<a.indexOf(goallocation);i++){
-                            if(!getCard(setup,a.charAt(i)).equals("")){
-                                 if(getCard(setup,a.charAt(i)).charAt(0)==getCard(setup,goallocation).charAt(0)){
-                                      sb = sb+getCard(setup,a.charAt(i));
-                            }
+                        for(int k =zhangyiIndex+1;k<goalIndex;k++){
+                            if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
+                                sb = sb +getCard(setup,str.charAt(k));
                             }
                         }
                     }
+                    }
                 }
+            }else{
+                setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
             }
         }
         return sb;
@@ -588,60 +572,15 @@ public class WarringStatesGame {
                 }
             }
         }
-        //supporter = sortCard(supporter);
         return supporter;
     }
-
-    /*private static String sortCard(String supporter) {
-        String a = "";
-        String d = "";
-        String e = "";
-
-        for (int i = 0; i < supporter.length(); i = i + 2) {
-            a = a + supporter.charAt(i);
-        }
-        for (int z = 1; z < supporter.length(); z = z + 2) {
-            e = e + supporter.charAt(z);
-        }
-        char[] b = a.toCharArray();
-        Arrays.sort(b);
-        String c = b.toString();
-        for (int j = 0; j < b.length - 1; j++) {
-            if (b[j] != b[j + 1]) {
-                if (j == b.length - 2) {
-                    d = d + b[j] + supporter.charAt(supporter.indexOf(b[j]) + 1) + b[b.length-1] + supporter.charAt(supporter.indexOf(b[b.length-1]) + 1);
-                } else {
-                    d = d + b[j] + supporter.charAt(supporter.indexOf(b[j]) + 1);
-                }
-            } else {
-                String str = "";
-                for (int k = 0; k < supporter.length(); k = k + 2) {
-                    if (supporter.charAt(k) == b[j]) {
-                        str = str + supporter.charAt(k + 1);
-                    }
-                }
-                char[] f = str.toCharArray();
-                Arrays.sort(f);
-                for (char q : f) {
-                    d = d + b[j] + q;
-                }
-
-                j = j + f.length - 1;
-                if(j==b.length-2){
-                    d = d + b[b.length-1] + supporter.charAt(supporter.indexOf(b[b.length-1]) + 1);
-                }
-
-            }
-        }
-        return d;
-    }*/
     private static String getCard(String setup,char s ){
         for(int j = 2; j<setup.length();j = j+3){
             if(setup.charAt(j)==s){
                 return setup.substring(j-2,j);
             }
         }
-        return "";
+        return "  ";
     }
     /**
      * Given a setup and move sequence, determine which player controls the flag of each kingdom
@@ -680,7 +619,6 @@ public class WarringStatesGame {
             }
             int max = Collections.max(Arrays.asList(flagOfOne));
             ArrayList<Integer> takeSameNumber = new ArrayList<>();
-            ArrayList<Integer> takePlayerId = new ArrayList<>();
             for (int m = 0; m < flagOfOne.length; m++) {
                 if (flagOfOne[m]==max) {
                     j++;
