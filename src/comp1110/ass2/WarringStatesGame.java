@@ -670,6 +670,29 @@ public class WarringStatesGame {
      */
     public static char generateMove(String placement) {
         // FIXME Task 10: generate a legal move
-        return '\0';
+
+        char goallocation;
+        char result = '\0';
+
+        for(goallocation = 'A';goallocation<='Z';goallocation++){
+            if(isMoveLegal(placement,goallocation)){
+                result = goallocation;
+                break;
+            }
+        }
+
+        for(goallocation = '0';goallocation<='9';goallocation++){
+            if(isMoveLegal(placement,goallocation)){
+                result = goallocation;
+                break;
+            }
+        }
+
+        if(result != '\0'){
+            return result;
+        }else
+        {
+            return '\0';
+        }
     }
 }
