@@ -1,7 +1,8 @@
 package gittest;
 
 public class A {
-  public String toString(){
+  public String toString()
+  {
       return "A";
   }
 }
