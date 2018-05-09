@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 public class Game extends Application {
     private static final int BOARD_WIDTH = 933;
     private static final int BOARD_HEIGHT = 700;
-
+// Idea- Akshat Singhal
+    //Author- Akshat Singhal
     // FIXME Task 9: Implement a basic playable Warring States game in JavaFX
     private static final int VIEWER_WIDTH = 933;
     private static final int VIEWER_HEIGHT = 700;
@@ -44,7 +45,8 @@ public class Game extends Application {
         root.getChildren().add(squareg);
         root.getChildren().add(pieces);
 
-
+        int count_columns=6;
+        int count_rows=6;
 
 
     }

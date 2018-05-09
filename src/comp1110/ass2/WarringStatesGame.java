@@ -26,6 +26,8 @@ public class WarringStatesGame {
      * @param cardPlacement A string describing a card placement
      * @return true if the card placement is well-formed
      */
+    //Idea- Shunyu Yao, Ruiyi Sun and Akshat Singhal
+    //Author- Shunyu Yao
     static boolean isCardPlacementWellFormed(String cardPlacement) {
         // FIXME Task 2: determine whether a card placement is well-formed
 
@@ -122,6 +124,8 @@ public class WarringStatesGame {
      * @param placement A string describing a placement of one or more cards
      * @return true if the placement is well-formed
      */
+    //Idea- Shunyu Yao
+    //Author- Shunyu Yao
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
         //check the length of the characters
@@ -337,6 +341,7 @@ public class WarringStatesGame {
      * @param locationChar a location for Zhang Yi to move to
      * @return true if Zhang Yi may move to that location
      */
+    //Author- Shunyu Yao
     public static boolean isMoveLegal(String placement, char locationChar) {
         // FIXME Task 5: determine whether a given move is legal
         //check the third character of the string placement whether it's equals a-z or 0-9
@@ -448,6 +453,7 @@ public class WarringStatesGame {
      * @param moveSequence a string of location characters representing moves
      * @return True if the placement sequence is valid
      */
+    //Author- Ruiyi Sun
     static boolean isMoveSequenceValid(String setup, String moveSequence) {
         // FIXME Task 6: determine whether a placement sequence is valid
         // check if there is the same char in the moveSequence and the char in the moveSequence should be the char in setup
@@ -553,6 +559,7 @@ public class WarringStatesGame {
      * @param playerId     the player number for which to get the list of supporters, [0..(numPlayers-1)]
      * @return the list of supporters for the given player
      */
+    //Author- Ruiyi Sun
     public static String getSupporters(String setup, String moveSequence, int numPlayers, int playerId) {
         // FIXME Task 7: get the list of supporters for a given player after a sequence of moves
         // distribute the sting to a list of list with the number of players
@@ -599,6 +606,7 @@ public class WarringStatesGame {
      * - element 6 contains the player ID of the player who controls the flag of Yan
      * If no player controls a particular house, the element for that house will have the value -1.
      */
+    //Author- Ruiyi Sun
     public static int[] getFlags(String setup, String moveSequence, int numPlayers) {
         // FIXME Task 8: determine which player controls the flag of each kingdom after a given sequence of moves
         // use the getSupporters function to get a string
@@ -668,19 +676,20 @@ public class WarringStatesGame {
      * @param placement the current placement string
      * @return a location character representing Zhang Yi's destination for the move
      */
+    //Author- Shunyu Yao
     public static char generateMove(String placement) {
         // FIXME Task 10: generate a legal move
 
         char goallocation;
         char result = '\0';
-
+//location char is in the range A-Z
         for(goallocation = 'A';goallocation<='Z';goallocation++){
             if(isMoveLegal(placement,goallocation)){
                 result = goallocation;
                 break;
             }
         }
-
+//location char is in the range 0-9
         for(goallocation = '0';goallocation<='9';goallocation++){
             if(isMoveLegal(placement,goallocation)){
                 result = goallocation;

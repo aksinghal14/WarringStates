@@ -53,6 +53,8 @@ public class Viewer extends Application {
      *
      * @param placement A valid placement string
      */
+    //Idea- Ruiyi Sun and Akshat Singhal
+    //Author- Shunyu Yao, Ruiyi Sun and Akshat Singhal
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
         this.pieces.getChildren().clear();// clearing pieces
@@ -148,14 +150,14 @@ public class Viewer extends Application {
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('2',placement)-2, getIndexPlacement('2',placement)+1)));
                         square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('2',placement)-2)))));}
                 } else if (i == 1 && j == 5) {
-                    //3...
+                    //3
                     if(getIndexPlacement('3',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('3',placement)-2, getIndexPlacement('3',placement)+1)));
                         square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('3',placement)-2)))));}
                 } else if (i == 2 && j == 2) {
-                    //U...
+                    //U
                     if(getIndexPlacement('U',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
@@ -240,7 +242,7 @@ public class Viewer extends Application {
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('R',placement)-2, getIndexPlacement('R',placement)+1)));
                         square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('R',placement)-2)))));}
                 } else if (i == 4 && j == 0) {
-                    ////G...
+                    ////G
                     if(getIndexPlacement('G',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
@@ -486,7 +488,7 @@ public class Viewer extends Application {
             }else if(p.charAt(1)=='5'){
                 charcaterName = "Lord Menchang";
             }else if(p.charAt(1)=='6'){
-                charcaterName = "Sun Bin";
+                a = "Sun Bin";
             }
         }
         else if(p.charAt(0)=='c'){
@@ -520,9 +522,9 @@ public class Viewer extends Application {
         }else if(p.charAt(0)=='e'){
             // han
             if(p.charAt(1)=='0'){
-                charcaterName = "King Huanhui";
+                a = "King Huanhui";
             }else if(p.charAt(1)=='1'){
-                charcaterName = "King An";
+                a = "King An";
             }else if(p.charAt(1)=='2'){
                 charcaterName = "Marquess Ai";
             }else if(p.charAt(1)=='3'){
