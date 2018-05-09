@@ -53,6 +53,8 @@ public class Viewer extends Application {
      *
      * @param placement A valid placement string
      */
+    //Idea- Ruiyi Sun and Akshat Singhal
+    //Author- Shunyu Yao, Ruiyi Sun and Akshat Singhal
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
         this.pieces.getChildren().clear();// clearing pieces
@@ -546,6 +548,7 @@ public class Viewer extends Application {
             }
         }else{
             a = "Zhang Yi";
+
         }
 
         return a;
