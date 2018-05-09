@@ -488,7 +488,7 @@ public class Viewer extends Application {
             }else if(p.charAt(1)=='5'){
                 charcaterName = "Lord Menchang";
             }else if(p.charAt(1)=='6'){
-                a = "Sun Bin";
+                charcaterName = "Sun Bin";
             }
         }
         else if(p.charAt(0)=='c'){
@@ -522,9 +522,9 @@ public class Viewer extends Application {
         }else if(p.charAt(0)=='e'){
             // han
             if(p.charAt(1)=='0'){
-                a = "King Huanhui";
+               charcaterName = "King Huanhui";
             }else if(p.charAt(1)=='1'){
-                a = "King An";
+                charcaterName = "King An";
             }else if(p.charAt(1)=='2'){
                 charcaterName = "Marquess Ai";
             }else if(p.charAt(1)=='3'){
