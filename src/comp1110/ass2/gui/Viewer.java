@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,11 +20,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.util.Scanner;
@@ -595,12 +592,12 @@ public class Viewer extends Application {
 
         Button button = new Button("Refresh");
         button.setOnAction(new EventHandler<ActionEvent>() {
-                               @Override
-                               public void handle(ActionEvent e) {
-                                   makePlacement( textField.getText());
-                                   textField.clear();
-                               }
-                           }
+            @Override
+            public void handle(ActionEvent e) {
+                makePlacement( textField.getText());
+                textField.clear();
+                }
+                }
         );
 // enter the number
         textField.setOnKeyPressed((KeyEvent p) -> {
@@ -631,7 +628,6 @@ public class Viewer extends Application {
         boolean evenflag = true;
 
         Label label=new Label("Not clicked");
-        DropShadow shadow=new DropShadow();
         Button button1= new Button("Easy");
         button1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
