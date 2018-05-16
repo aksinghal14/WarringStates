@@ -485,16 +485,15 @@ public class WarringStatesGame {
 
     }
     static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
-        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+
         StringBuilder sb = new StringBuilder(placement);
         char goalState = locationC(goallocation, sb.toString());
         if (sb.toString().indexOf('z') >= 0) {
             sb.delete(sb.toString().indexOf('z'), sb.toString().indexOf('z') + 3);
         }
-        for (String str : s) {
+            String str = getStringInLine(zhangyilocation,goallocation);
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
-            if (str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation) >= 0) {
                 for (int i = 0; i < str.length(); i++) {
                     if ((i >= a && i <= b) || (i <= a && i >= b)) {
                         for (int j = 2; j < sb.toString().length(); j = j + 3) {
@@ -505,41 +504,42 @@ public class WarringStatesGame {
                                     sb.setCharAt(j - 1, '9');
                                     sb.setCharAt(j - 2, 'z');
                                 }
-
+                                break;
                             }
                         }
                     }
                 }
 
+        return sb.toString();
+    }
+
+    public static String getStringInLine(char zhangyilocation,char goallocation){
+        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+        for (String str : s) {
+            if(str.indexOf(zhangyilocation) >= 0 && str.indexOf(goallocation) >= 0){
+                return str;
             }
         }
-        return sb.toString();
+        return "";
     }
     public static String WinCard(String setup,String moveSequence,char goallocation) {
         String sb = "";
-        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
         for(int i =0;i<moveSequence.length();i++){
             if(moveSequence.charAt(i)==goallocation){
                 char zhangyi = zhangyilocation(setup);
-                for(String str:s){
+                String str = getStringInLine(zhangyi,goallocation);
                     int zhangyiIndex = str.indexOf(zhangyi);
                     int goalIndex = str.indexOf(goallocation);
                 if(zhangyiIndex>=0&&goalIndex>=0){
-                    if(zhangyiIndex>goalIndex){
-                        for(int k =goalIndex+1;k<zhangyiIndex;k++){
-                            if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
-                                sb = sb+getCard(setup,str.charAt(k));
-                            }
-                        }
-                    }else{
-                        for(int k =zhangyiIndex+1;k<goalIndex;k++){
+                    int finish = Math.max(zhangyiIndex,goalIndex);
+                    int start = Math.min(zhangyiIndex,goalIndex)+1;
+                        for(int k =start;k<finish;k++){
                             if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
                                 sb = sb +getCard(setup,str.charAt(k));
                             }
                         }
                     }
-                    }
-                }
+                    break;// the break is really important to reduce the waste of time
             }else{
                 setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
             }
@@ -567,7 +567,6 @@ public class WarringStatesGame {
         // combine elements and return a string
         // transfer the string to a 2-char-string(a-g,0-7)
         String supporter = "";
-        if (isMoveSequenceValid(setup, moveSequence)) {
             if(moveSequence.length()%numPlayers==0||moveSequence.length()%numPlayers<playerId+1){
             for (int i = 0; i < (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
                 supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers)) +WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
@@ -578,7 +577,7 @@ public class WarringStatesGame {
                     supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers))+WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
                 }
             }
-        }
+
         return supporter;
     }
     private static String getCard(String setup,char s ){
@@ -609,6 +608,9 @@ public class WarringStatesGame {
     //Author- Ruiyi Sun
     public static int[] getFlags(String setup, String moveSequence, int numPlayers) {
         // FIXME Task 8: determine which player controls the flag of each kingdom after a given sequence of moves
+
+        //////reduce the loop///
+
         // use the getSupporters function to get a string
         // get the odd index char in the string
         // count the same char to get the number of flag
