@@ -484,7 +484,7 @@ public class WarringStatesGame {
         }
 
     }
-    static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
+    public static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
 
         StringBuilder sb = new StringBuilder(placement);
         char goalState = locationC(goallocation, sb.toString());
