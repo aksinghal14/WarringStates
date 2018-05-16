@@ -7,9 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -45,6 +47,7 @@ public class Viewer extends Application {
     private final Group controls = new Group();
     private final Group squareg = new Group();
     private final Group pieces = new Group();
+    private boolean isGameOver;
 
     TextField textField;
 
@@ -57,6 +60,7 @@ public class Viewer extends Application {
     //Author- Shunyu Yao, Ruiyi Sun and Akshat Singhal
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
+
         this.pieces.getChildren().clear();// clearing pieces
 
         while (root.getChildren().size() >= 36)// input string less than 36
@@ -120,6 +124,7 @@ public class Viewer extends Application {
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('Z',placement)-2, getIndexPlacement('Z',placement)+1)));
                         square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Z',placement)-2)))));}
+
                 } else if (i == 1 && j == 2) {
                     // 0...
                     if(getIndexPlacement('0',placement)==0){
@@ -149,6 +154,7 @@ public class Viewer extends Application {
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('2',placement)-2, getIndexPlacement('2',placement)+1)));
                         square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('2',placement)-2)))));}
+                        text.setFill(Color.WHITE);
                 } else if (i == 1 && j == 5) {
                     //3
                     if(getIndexPlacement('3',placement)==0){
@@ -331,6 +337,8 @@ public class Viewer extends Application {
                 root.getChildren().add(square);
 
                 root.getChildren().add(text);
+
+
             }
 
             //String[] placements = new String[placement.length()];
@@ -430,7 +438,7 @@ public class Viewer extends Application {
                 s = "0x0000FF";
                 break;
             case "b":
-                s = "#9999ff";
+                s = "#ffff00";
                 break;
             case "c":
                 s = "#00ff00";
@@ -442,13 +450,14 @@ public class Viewer extends Application {
                 s = "#cc00cc";
                 break;
             case "f":
-                s= "#000066";
+                s= "#ff0000";
                 break;
             case "g":
                 s = "#cc3300";
                 break;
             case "z":
                 s= "#000000";
+
         }
         return s;
     }
@@ -557,9 +566,34 @@ public class Viewer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+      /*  ToolBar t1=new ToolBar();
+        RadioButton rEasy = new RadioButton("Easy");
+        RadioButton rMedium = new RadioButton("Medium");
+        RadioButton rHard = new RadioButton("Hard");
+        ToggleGroup groupDifficulty = new ToggleGroup();
+        groupDifficulty.getToggles().addAll(rEasy, rMedium, rHard);
+
+        ToolBar t2 = new ToolBar();
+        t2.setOrientation(Orientation.VERTICAL);
+        t2.getItems().addAll(new Separator(), rEasy, rMedium, rHard, new Separator());
+
+        BorderPane bp=new BorderPane();
+        bp.setBottom(t1);
+        bp.setBottom(t2);
+        Scene scene2= new Scene(bp, 600, 300);
+        primaryStage.setScene(scene2);
+        primaryStage.show();*/
+
+      String musicFile= new File("C:\\Users\\Akshat Singhal\\Downloads\\Tone.mp3").toURI().toString();
+      MediaPlayer mediaPlayer=new MediaPlayer(new Media(musicFile));
+      mediaPlayer.play();
+
+
+
         Label label1 = new Label("Placement:");
         textField = new TextField();
         textField.setPrefWidth(300);
+
         Button button = new Button("Refresh");
         button.setOnAction(new EventHandler<ActionEvent>() {
                                @Override
@@ -597,8 +631,20 @@ public class Viewer extends Application {
         int count_row = 6;
         boolean evenflag = true;
 
+        Label label=new Label("Not clicked");
+        DropShadow shadow=new DropShadow();
+        Button button1= new Button("Easy");
+        button1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                label.setText("CLICKED");
+            }
+        });
+
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
     }
 }
 
