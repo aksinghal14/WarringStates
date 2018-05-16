@@ -350,7 +350,7 @@ public class Viewer extends Application {
         }
     }
 
-/*public void rect (Stage primarystage){
+            /*public void rect (Stage primarystage){
             AnchorPane root = new AnchorPane();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -584,10 +584,9 @@ public class Viewer extends Application {
         primaryStage.setScene(scene2);
         primaryStage.show();*/
 
-      String musicFile= new File("C:\\Users\\Akshat Singhal\\Downloads\\Tone.mp3").toURI().toString();
-      MediaPlayer mediaPlayer=new MediaPlayer(new Media(musicFile));
-      mediaPlayer.play();
-
+        String musicFile= new File("assets/Tone.mp3").toURI().toString();
+        MediaPlayer mediaPlayer=new MediaPlayer(new Media(musicFile));
+        mediaPlayer.play();
 
 
         Label label1 = new Label("Placement:");
