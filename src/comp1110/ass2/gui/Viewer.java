@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -25,6 +26,9 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -46,7 +50,24 @@ public class Viewer extends Application {
     private final Group pieces = new Group();
     private boolean isGameOver;
 
+    private boolean triagger = false;
+
+    private double x;
+    private double y;
+
     TextField textField;
+
+    public String setup;
+    public String place;
+
+
+    char mousePlace(){
+        char c ='.';
+        if((x >= 100 && x<=200) && (y>=300 && y<=400) ){
+            c = '1';
+        }
+        return c;
+    }
 
     /**
      * Draw a placement in the window, removing any previously drawn one
@@ -55,6 +76,9 @@ public class Viewer extends Application {
      */
     //Idea- Ruiyi Sun and Akshat Singhal
     //Author- Shunyu Yao, Ruiyi Sun and Akshat Singhal
+
+
+
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
 
@@ -62,6 +86,9 @@ public class Viewer extends Application {
 
         while (root.getChildren().size() >= 36)// input string less than 36
             root.getChildren().remove(root.getChildren().size() - 1);
+
+
+
         placement = placement;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -77,35 +104,100 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('4',placement)-2, getIndexPlacement('4',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('4',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('4',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'4')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'4');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 0 && j == 1) {
                     //5 is the location of card on the board
                     if(getIndexPlacement('5',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('5',placement)-2, getIndexPlacement('5',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('5',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('5',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'5')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'5');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 0 && j == 2) {
                     //6...
                     if(getIndexPlacement('6',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('6',placement)-2, getIndexPlacement('6',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('6',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('6',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'6')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'6');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 0 && j == 3) {
                     //7...
                     if(getIndexPlacement('7',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('7',placement)-2, getIndexPlacement('7',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('7',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('7',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'7')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'7');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 0 && j == 4) {
                     //8...
                     if(getIndexPlacement('8',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('8',placement)-2, getIndexPlacement('8',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('8',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('8',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'8')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'8');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
 
                 } else if (i == 0 && j == 5) {
                     //9...
@@ -113,14 +205,54 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('9',placement)-2, getIndexPlacement('9',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('9',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('9',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'9')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'9');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 1 && j == 1) {
                     // Z...
                     if(getIndexPlacement('Z',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('Z',placement)-2, getIndexPlacement('Z',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Z',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Z',placement)-2)))));
+
+                        if(WarringStatesGame.isMoveLegal(setup,'Z')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+                                public void handle(MouseEvent me) {
+                                    //placement = WarringStatesGame.updatePlacement(placement,'2','4');
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    System.out.println("click");
+
+                                    if(triagger){
+                                        //if(WarringStatesGame.isMoveLegal(setup,'1')){
+                                        System.out.println(triagger);
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Z');
+                                        //place = setup;
+                                        makePlacement(setup);
+                                        System.out.println(setup);
+
+
+                                    }
+                                }
+                            });
+                        }
+
+
+                    }
 
                 } else if (i == 1 && j == 2) {
                     // 0...
@@ -128,21 +260,64 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('0',placement)-2, getIndexPlacement('0',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('0',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('0',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'0')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'0');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 1 && j == 3) {
                     // 1...
                     if(getIndexPlacement('1',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('1',placement)-2, getIndexPlacement('1',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('1',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('1',placement)-2)))));
+
+                        if(WarringStatesGame.isMoveLegal(placement,'1')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'1');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }
+
+
+                    }
                 } else if (i == 1 && j == 0) {
                     // Y...
                     if(getIndexPlacement('Y',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('Y',placement)-2, getIndexPlacement('Y',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Y',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Y',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'Y')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Y');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
 
                 } else if (i == 1 && j == 4) {
                     //2...
@@ -150,7 +325,20 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('2',placement)-2, getIndexPlacement('2',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('2',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('2',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'2')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'2');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                         text.setFill(Color.WHITE);
                 } else if (i == 1 && j == 5) {
                     //3
@@ -158,49 +346,152 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('3',placement)-2, getIndexPlacement('3',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('3',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('3',placement)-2)))));
+
+
+                        if(WarringStatesGame.isMoveLegal(setup,'3')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+                                public void handle(MouseEvent me) {
+                                    //placement = WarringStatesGame.updatePlacement(placement,'2','4');
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    System.out.println("click");
+
+                                    if(triagger){
+                                        //if(WarringStatesGame.isMoveLegal(setup,'1')){
+                                        System.out.println(triagger);
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'3');
+                                        //place = setup;
+                                        makePlacement(setup);
+                                        System.out.println(setup);
+
+
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 2) {
                     //U
                     if(getIndexPlacement('U',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('U',placement)-2, getIndexPlacement('U',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('U',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('U',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'U')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'U');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 0) {
                     //S...
                     if(getIndexPlacement('S',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('S',placement)-2, getIndexPlacement('S',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('S',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('S',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'S')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'S');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 1) {
                     //T...
                     if(getIndexPlacement('T',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('T',placement)-2, getIndexPlacement('T',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('T',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('T',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'T')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'T');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 3) {
                     //V...
                     if(getIndexPlacement('V',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('V',placement)-2, getIndexPlacement('V',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('V',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('V',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'V')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'V');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 4) {
                     //W...
                     if(getIndexPlacement('W',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('W',placement)-2, getIndexPlacement('W',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('W',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('W',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'W')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'W');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 2 && j == 5) {
                     //X...
                     if(getIndexPlacement('X',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('X',placement)-2, getIndexPlacement('X',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('X',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('X',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'X')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'X');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
 
                 } else if (i == 3 && j == 0) {
                     // M...
@@ -208,126 +499,360 @@ public class Viewer extends Application {
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('M',placement)-2, getIndexPlacement('M',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('M',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('M',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'M')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'M');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 3 && j == 1) {
                     // N...
                     if(getIndexPlacement('N',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('N',placement)-2, getIndexPlacement('N',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('N',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('N',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'N')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'N');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 3 && j == 2) {
                     // O...
                     if(getIndexPlacement('O',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('O',placement)-2, getIndexPlacement('O',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('O',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('O',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'O')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'O');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 3 && j == 3) {
                     // P...
                     if(getIndexPlacement('P',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('P',placement)-2, getIndexPlacement('P',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('P',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('P',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'P')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'P');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 3 && j == 4) {
                     //Q...
                     if(getIndexPlacement('Q',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('Q',placement)-2, getIndexPlacement('Q',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Q',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('Q',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'Q')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Q');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 3 && j == 5) {
                     //R...
                     if(getIndexPlacement('R',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('R',placement)-2, getIndexPlacement('R',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('R',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('R',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'R')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'R');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 0) {
                     ////G
                     if(getIndexPlacement('G',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('G',placement)-2, getIndexPlacement('G',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('G',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('G',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'G')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'G');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 1) {
                     ////H...
                     if(getIndexPlacement('H',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('H',placement)-2, getIndexPlacement('H',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('H',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('H',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'H')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'H');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 2) {
                     ////I///
                     if(getIndexPlacement('I',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('I',placement)-2, getIndexPlacement('I',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('I',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('I',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'I')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'I');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 3) {
                     ////J////
                     if(getIndexPlacement('J',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('J',placement)-2, getIndexPlacement('J',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('J',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('J',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'J')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'J');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 4) {
                     /////K///
                     if(getIndexPlacement('K',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('K',placement)-2, getIndexPlacement('K',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('K',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('K',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'K')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'K');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 4 && j == 5) {
                     ////L////
                     if(getIndexPlacement('L',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('L',placement)-2, getIndexPlacement('L',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('L',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('L',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'L')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'L');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 0) {
                     /// A ///
                     if(getIndexPlacement('A',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('A',placement)-2, getIndexPlacement('A',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('A',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('A',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'A')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'A');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 1) {
                     ///B/////
                     if(getIndexPlacement('B',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('B',placement)-2, getIndexPlacement('B',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('B',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('B',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'B')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'B');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 2) {
                     /// C/////
                     if(getIndexPlacement('C',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('C',placement)-2, getIndexPlacement('C',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('C',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('C',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'C')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'C');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 3) {
                     ////D////
                     if(getIndexPlacement('D',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('D',placement)-2, getIndexPlacement('D',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('D',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('D',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'D')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'D');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 4) {
                     ////E////
                     if(getIndexPlacement('E',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('E',placement)-2, getIndexPlacement('E',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('E',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('E',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'E')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'E');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
                 } else if (i == 5 && j == 5) {
                     /////F/////
                     if(getIndexPlacement('F',placement)==0){
                         square.setFill(Color.WHITE);
                     }else{
                         text.setText(takeCharacter(placement.substring(getIndexPlacement('F',placement)-2, getIndexPlacement('F',placement)+1)));
-                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('F',placement)-2)))));}
+                        square.setFill(Color.web(takeKingdom(String.valueOf(placement.charAt(getIndexPlacement('F',placement)-2)))));
+                        if(WarringStatesGame.isMoveLegal(placement,'F')){
+                            square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                                public void handle(MouseEvent me) {
+                                    x = me.getX();
+                                    y = me.getY();
+                                    triagger = true;
+                                    if(triagger){
+                                        setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'F');
+                                        makePlacement(setup);
+                                    }
+                                }
+                            });
+                        }}
 
                 }
 
@@ -559,9 +1084,34 @@ public class Viewer extends Application {
         return charcaterName;
     }
 
+    public static String generateRandomSetup() {
+        List<String> cards = new ArrayList<>();
+        for (char k = 'a'; k < 'h'; k++) {
+            for (char c = '0'; c < 8 - (k - 'a') + '0'; c++) {
+                cards.add("" + k + c);
+            }
+        }
+        Collections.shuffle(cards);
+        StringBuilder sb = new StringBuilder();
+        int location = 0;
+        for (String card : cards) {
+            sb.append(card).append(location < 26 ? location + 'a' : location - 26 + '0');
+            location++;
+        }
+        return sb.toString();
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
+        //setup = generateRandomSetup();
+        setup = "g0Aa0Bf1Ca1Dc5Ee1Fa4Ge3He2Ia2Jc2Kd0Lf0Mb4Nd4Oa6Pc3Qe0Ra5Sc1Td1Uc4Vb5Wb0Xa7Yf2Zb10a31z92b33b64d35g16b27d28c09";
+
+        System.out.println(setup);
+        makePlacement(setup);
+
+
 
       /*  ToolBar t1=new ToolBar();
         RadioButton rEasy = new RadioButton("Easy");
@@ -606,6 +1156,9 @@ public class Viewer extends Application {
                 textField.clear();
             }
         });
+
+
+
         HBox hb = new HBox();
         hb.getChildren().addAll(label1, textField, button);
         hb.setSpacing(10);
