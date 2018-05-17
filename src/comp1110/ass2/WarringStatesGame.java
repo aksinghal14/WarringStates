@@ -1,16 +1,5 @@
 package comp1110.ass2;
 
-
-
-import java.lang.reflect.Array;
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
-
 /**
  * This class provides the text interface for the Warring States game
  */
@@ -198,127 +187,6 @@ public class WarringStatesGame {
         }
 
 
-        /*String[] card = getCardPlacement(placement);
-
-
-        String[] cardstate = new String[placement.length()/3];
-        char[] cardlocation = new char[placement.length()/3];
-
-        for(int i=0;i<card.length;i++){
-            cardstate[i] = getCardStates(card[i]);
-            cardlocation[i] = getCardLocation(card[i]);
-        }
-
-        boolean b1= false;
-        boolean b2= false;
-        boolean b3= false;
-        boolean b4= false;
-
-        if(placement != null && placement!=""){
-            b1 = true;
-        }else{
-            b1 = false;
-        }
-
-        for(int i=0;i<card.length;i++){
-            b2 = isCardPlacementWellFormed(card[i]);
-            if(b2 == false){
-                break;
-            }else{
-                b2 =true;
-            }
-        }
-
-        for(int i=0;i<cardstate.length;i++){
-            for(int j=i+1;j<cardstate.length;j++){
-                if(cardstate[i].equals(cardstate[j])){
-                    b3 = false;
-                    break;
-                }
-            }
-        }
-
-        for(int i=0;i<cardstate.length;i++){
-            for(int j=i+1;j<cardstate.length;j++){
-                if(cardlocation[i]==cardlocation[j]){
-                    b4 = false;
-                    break;
-                }
-            }
-        }*/
-
-
-
-
-
-
-        /*boolean b1 = false;
-        boolean b2 = false;
-        boolean b3 = false;
-
-
-        if(placement != null && placement !="") {
-            if (placement.length() % 3 == 0) {
-                for (int i = 0; i < placement.length(); i = i + 3) {
-                    String str1 = placement.substring(i, i + 3);
-                    b1 = isCardPlacementWellFormed(str1);
-                }
-            } else {
-                b1 = false;
-            }
-        }
-
-        if(placement != null && placement !="") {
-            if (placement.length() % 3 == 0) {
-                String[] card = new String[placement.length() / 3];
-
-                int j = 0;
-                for (int i = 0; i < placement.length(); i = i + 3) {
-                    card[j] = placement.substring(i, i + 2);
-                    j++;
-                }
-
-                for (int i = 0; i < card.length; i++) {
-                    for (int k = i + 1; k < card.length; k++) {
-                        if (card[i].equals(card[k])) {
-                            b2 = false;
-                        }
-                    }
-                }
-            } else {
-                b2 = false;
-            }
-        }
-
-        if(placement != null && placement !="") {
-            if (placement.length() % 3 == 0) {
-                String[] card = new String[placement.length() / 3];
-
-                int j = 0;
-                for (int i = 0; i < placement.length(); i = i + 3) {
-                    card[j] = placement.substring(i, i + 3);
-                    j++;
-                }
-
-                for (int i = 0; i < card.length; i++) {
-                    for (int k = i + 1; k < card.length; k++) {
-                        if (card[i].charAt(2) == card[k].charAt(2)) {
-                            b3 = false;
-                        }
-                    }
-                }
-            } else {
-                b3 = false;
-            }
-        }
-
-
-        if(b1 && b2 && b3){
-            return true;
-        }else{
-            return false;
-        }*/
-
 
         if (b0 && b1 && b2 && b3) {
             return true;
@@ -344,14 +212,8 @@ public class WarringStatesGame {
     //Author- Shunyu Yao
     public static boolean isMoveLegal(String placement, char locationChar) {
         // FIXME Task 5: determine whether a given move is legal
-        //check the third character of the string placement whether it's equals a-z or 0-9
-        //check the third character of the string placement equals to locationChar
-        //compares the third character of the string placement and the locationChar
-        //compares the third character and then compares the second character of the string placement whether there are the same.
-
-        //if(placement.charAt(2)=='A'|placement.charAt(2)=='B'|placement.charAt(2)=='C'|placement.charAt(2)=='D'|placement.charAt(2)=='E'){
+        //check the third character of the string placement whether it's equals a-z or 0-9 check the third character of the string placement equals to locationChar compares the third character of the string placement and the locationChar..compares the third character and then compares the second character of the string placement whether there are the same.
         String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        // if the char in the range
         if (c.indexOf(locationChar) >= 0) {
             // check the zhangyi in the range of 0-9 or A-Z
             // check char location and the zhangyi in the same line
@@ -361,7 +223,6 @@ public class WarringStatesGame {
         }
         return false;
     }
-
     // to find the location of zhangyi
     public static char zhangyilocation(String placement) {
         return placement.charAt(placement.indexOf('z') + 2);
@@ -461,12 +322,8 @@ public class WarringStatesGame {
         // for example row: "4YSMGA","5ZTNHB"... column: "ABCDEF","GHIJKL"
         // check if first char and second char in the same string(row string or column)
         // check all chars in the moveSequence and return true
-
-        //char zhangyiinitiallocation = zhangyilocation(setup);
         boolean b = true;
-
         String placement = setup;
-
         for (int i = 0; i < moveSequence.length(); i++) {
             if (isMoveLegal(placement, moveSequence.charAt(i))) {
                 placement = updatePlacement(placement, zhangyilocation(placement), moveSequence.charAt(i));
@@ -475,14 +332,11 @@ public class WarringStatesGame {
                 b = false;
             }
         }
-
-
         if (b) {
             return true;
         } else {
             return false;
         }
-
     }
     public static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
         StringBuilder sb = new StringBuilder(placement);
@@ -490,7 +344,6 @@ public class WarringStatesGame {
         if (sb.toString().indexOf('z') >= 0) {
             sb.delete(sb.toString().indexOf('z'), sb.toString().indexOf('z') + 3);
         }
-            //String str = getStringInLine(zhangyilocation,goallocation);
         String str = "";
         String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
         for (String st : s) {
@@ -539,15 +392,15 @@ public class WarringStatesGame {
                     int zhangyiIndex = str.indexOf(zhangyi);
                     int goalIndex = str.indexOf(goallocation);
                 if(zhangyiIndex>=0&&goalIndex>=0){
-                    int finish = Math.max(zhangyiIndex,goalIndex);
-                    int start = Math.min(zhangyiIndex,goalIndex)+1;
-                        for(int k =start;k<finish;k++){
+                    int f = Math.max(zhangyiIndex,goalIndex);
+                    int s = Math.min(zhangyiIndex,goalIndex)+1;
+                        for(int k =s;k<f;k++){
                             if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
                                 sb = sb +getCard(setup,str.charAt(k));
                             }
                         }
                     }
-                   break;// the break is really important to reduce the waste of time
+                break;// the break is really important to reduce the waste of time
             }else{
                 setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
             }
@@ -625,14 +478,14 @@ public class WarringStatesGame {
         // ps: if there are the same number of flag, go back to the string of each player and get the index of the last appearance of this char
         // then add the playerId to the list
         int[] flag = new int[7];
-        String kingdom = "abcdefg";
+        String k = "abcdefg";// the kingdom is sequence
         for (int a = 0; a < flag.length; a++) {
             int j = 0;// the number of flag in per player
             int[] flagOfOne = new int[numPlayers];
             //Integer[] flagOfOne = new Integer[numPlayers];
             for (int i = 0; i < numPlayers; i++) {
                 String s = getSupporters(setup, moveSequence, numPlayers, i);
-                flagOfOne[i] = getNumberOfKingdom(s, kingdom.charAt(a));
+                flagOfOne[i] = getNumberOfK(s, k.charAt(a));
             }
             int max=-1000;
             for(int o =0;o<flagOfOne.length;o++){
@@ -641,7 +494,6 @@ public class WarringStatesGame {
                 }
             }
             //int max = Collections.max(Arrays.asList(flagOfOne));
-            //ArrayList<Integer> takeSameNumber = new ArrayList<>();
             int[] takeSameNumber = new int[numPlayers];
             int number = 0;
             for (int m = 0; m < flagOfOne.length; m++) {
@@ -656,16 +508,12 @@ public class WarringStatesGame {
             if(max !=0){
                 if(j>1){
                     for(int i =moveSequence.length()-1;i>=0;i--){
-                        if(getCard(setup,moveSequence.charAt(i)).charAt(0)==kingdom.charAt(a)){
+                        if(getCard(setup,moveSequence.charAt(i)).charAt(0)==k.charAt(a)){
                             int h = (i+1)% numPlayers ; // player ID currently
                             if(h!=0){
                                 h = h-1;
                             }else {
-                                if(i!=0) {
-                                h = numPlayers-1;
-                                }else {
-                                h = 0;
-                                }
+                                h = numPlayers - 1;
                             }
                             if(takeSameNumber[h]!=-1){
                                 flag[a] = h;
@@ -682,8 +530,7 @@ public class WarringStatesGame {
         }
         return flag;
     }
-
-    public static int getNumberOfKingdom(String getSupporter,char k){
+    public static int getNumberOfK(String getSupporter,char k){
         int j = 0;
         for (int i =0;i<getSupporter.length();i= i+2){
             if(getSupporter.charAt(i)==k){
