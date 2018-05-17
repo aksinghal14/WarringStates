@@ -485,7 +485,6 @@ public class WarringStatesGame {
 
     }
     public static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
-
         StringBuilder sb = new StringBuilder(placement);
         char goalState = locationC(goallocation, sb.toString());
         if (sb.toString().indexOf('z') >= 0) {
@@ -502,7 +501,9 @@ public class WarringStatesGame {
         }
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
-                for (int i = 0; i < str.length(); i++) {
+            int f = Math.max(a,b);
+            int start = Math.min(a,b);
+                for (int i = start; i<=f; i++) {
                     if ((i >= a && i <= b) || (i <= a && i >= b)) {
                         for (int j = 2; j < sb.toString().length(); j = j + 3) {
                             if (sb.toString().charAt(j) == str.charAt(i)) {
