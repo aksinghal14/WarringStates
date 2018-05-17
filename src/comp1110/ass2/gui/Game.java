@@ -1457,8 +1457,8 @@ public class Game extends Application {
         button.setOnAction(new EventHandler<ActionEvent>() {
                                @Override
                                public void handle(ActionEvent e) {
-                                   makePlacement( textField.getText());
-                                   textField.clear();
+                                   setup="d4Ad1Ba7Cb3Db1Ee1Fd3Gc3Hb6Ic2Ja2Kf0Lc5Me3Ng0Oz9Pd2Qg1Rc0Sa5Tb4Ud0Va1Wf2Xe2Ya6Za40b01b22b53e04a05a36c17f18c49";
+                                   makePlacement(setup);
                                }
                            }
         );
