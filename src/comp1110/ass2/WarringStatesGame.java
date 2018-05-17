@@ -502,9 +502,8 @@ public class WarringStatesGame {
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
             int f = Math.max(a,b);
-            int start = Math.min(a,b);
-                for (int i = start; i<=f; i++) {
-                    if ((i >= a && i <= b) || (i <= a && i >= b)) {
+            int stt = Math.min(a,b);
+                for (int i = stt; i<=f; i++) {
                         for (int j = 2; j < sb.toString().length(); j = j + 3) {
                             if (sb.toString().charAt(j) == str.charAt(i)) {
                                 if (sb.toString().charAt(j - 2) == goalState && goallocation != sb.toString().charAt(j)) {
@@ -516,7 +515,6 @@ public class WarringStatesGame {
                                 break;
                             }
                         }
-                    }
                 }
 
         return sb.toString();
@@ -533,6 +531,7 @@ public class WarringStatesGame {
     }
     public static String WinCard(String setup,String moveSequence,char goallocation) {
         String sb = "";
+
         for(int i =0;i<moveSequence.length();i++){
             if(moveSequence.charAt(i)==goallocation){
                 char zhangyi = zhangyilocation(setup);
@@ -548,7 +547,7 @@ public class WarringStatesGame {
                             }
                         }
                     }
-                    break;// the break is really important to reduce the waste of time
+                   break;// the break is really important to reduce the waste of time
             }else{
                 setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
             }
@@ -586,7 +585,6 @@ public class WarringStatesGame {
                     supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers))+WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
                 }
             }
-
         return supporter;
     }
     private static String getCard(String setup,char s ){
@@ -638,10 +636,12 @@ public class WarringStatesGame {
             int max = Collections.max(Arrays.asList(flagOfOne));
             //ArrayList<Integer> takeSameNumber = new ArrayList<>();
             int[] takeSameNumber = new int[numPlayers];
+            int number = 0;
             for (int m = 0; m < flagOfOne.length; m++) {
                 if (flagOfOne[m]==max) {
                     j++;
                     takeSameNumber[m]=m;
+                    number = m;
                 }else{
                     takeSameNumber[m]=-1;
                 }
@@ -667,12 +667,7 @@ public class WarringStatesGame {
                         }
                     }
                 }else{
-                    for(int m = 0;m<takeSameNumber.length;m++) {
-                        if(takeSameNumber[m]!=-1){
-                        flag[a] = m;
-                        break;
-                        }
-                    }
+                    flag[a]=number;
                 }
             }else{
                 flag[a]= -1;
