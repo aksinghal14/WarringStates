@@ -1113,7 +1113,7 @@ public class Viewer extends Application {
         }
         return j;
     }
-    String takeKingdom(String p){
+    String takeKingdom(String p){ //setting the colors for the kingdoms
         String s ="";
         switch (p){
             case "a":
@@ -1143,7 +1143,7 @@ public class Viewer extends Application {
         }
         return s;
     }
-    String takeCharacter(String p){
+    String takeCharacter(String p){ //giving names
         String charcaterName = "";
         if(p.charAt(0)=='a'){
             // qin
@@ -1294,7 +1294,7 @@ public class Viewer extends Application {
         primaryStage.setScene(scene2);
         primaryStage.show();*/
 
-        String musicFile= new File("assets/Tone.mp3").toURI().toString();
+        String musicFile= new File("assets/Tone.mp3").toURI().toString(); //a music file to be played at the starting of the game
         MediaPlayer mediaPlayer=new MediaPlayer(new Media(musicFile));
         mediaPlayer.play();
 
@@ -1307,8 +1307,8 @@ public class Viewer extends Application {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                makePlacement( textField.getText());
-                textField.clear();
+                setup="d4Ad1Ba7Cb3Db1Ee1Fd3Gc3Hb6Ic2Ja2Kf0Lc5Me3Ng0Oz9Pd2Qg1Rc0Sa5Tb4Ud0Va1Wf2Xe2Ya6Za40b01b22b53e04a05a36c17f18c49";
+                makePlacement(setup);
                 }
                 }
         );

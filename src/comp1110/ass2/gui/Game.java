@@ -37,6 +37,10 @@ import java.util.Scanner;
  * NOTE: This class is separate from your main game class.  This
  * class does not play a game, it just illustrates various card placements.
  */
+
+/** Idea- Shunyu Yao, Ruiyi Sun, Akshat Singhal
+ * Author- Shunyu Yao, Ruiyi Sun, Akshat Singhal
+ */
 public class Game extends Application {
 
     // FIXME Task 9: Implement a basic playable Warring States game in JavaFX
