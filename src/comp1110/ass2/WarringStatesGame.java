@@ -432,6 +432,7 @@ public class WarringStatesGame {
      * The list of supporters is a sequence of two-character card IDs, representing
      * the cards that the chosen player collected by moving Zhang Yi.
      *
+     * 
      * @param setup        A placement string representing the board setup
      * @param moveSequence a string of location characters representing moves
      * @param numPlayers   the number of players in the game, must be in the range [2..4]
