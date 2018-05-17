@@ -616,7 +616,6 @@ public class WarringStatesGame {
     //Author- Ruiyi Sun
     public static int[] getFlags(String setup, String moveSequence, int numPlayers) {
         // FIXME Task 8: determine which player controls the flag of each kingdom after a given sequence of moves
-
         //////reduce the loop///
 
         // use the getSupporters function to get a string
@@ -636,26 +635,44 @@ public class WarringStatesGame {
                 flagOfOne[i] = getNumberOfKingdom(s, kingdom.charAt(a));
             }
             int max = Collections.max(Arrays.asList(flagOfOne));
-            ArrayList<Integer> takeSameNumber = new ArrayList<>();
+            //ArrayList<Integer> takeSameNumber = new ArrayList<>();
+            int[] takeSameNumber = new int[numPlayers];
             for (int m = 0; m < flagOfOne.length; m++) {
                 if (flagOfOne[m]==max) {
                     j++;
-                    takeSameNumber.add(m);
+                    takeSameNumber[m]=m;
+                }else{
+                    takeSameNumber[m]=-1;
                 }
             }
             if(max !=0){
                 if(j>1){
                     for(int i =moveSequence.length()-1;i>=0;i--){
                         if(getCard(setup,moveSequence.charAt(i)).charAt(0)==kingdom.charAt(a)){
-                            int h = i%numPlayers;
-                            if(takeSameNumber.contains(h)){
+                            int h = (i+1)% numPlayers ; // player ID currently
+                            if(h!=0){
+                                h = h-1;
+                            }else {
+                                if(i!=0) {
+                                h = numPlayers-1;
+                                }else {
+                                h = 0;
+                                }
+                            }
+                            if(takeSameNumber[h]!=-1){
                                 flag[a] = h;
                                 break;
                             }
                         }
                     }
                 }else{
-            flag[a] =takeSameNumber.get(0);}
+                    for(int m = 0;m<takeSameNumber.length;m++) {
+                        if(takeSameNumber[m]!=-1){
+                        flag[a] = m;
+                        break;
+                        }
+                    }
+                }
             }else{
                 flag[a]= -1;
             }
