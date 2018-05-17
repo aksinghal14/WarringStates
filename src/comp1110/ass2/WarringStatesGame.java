@@ -491,7 +491,15 @@ public class WarringStatesGame {
         if (sb.toString().indexOf('z') >= 0) {
             sb.delete(sb.toString().indexOf('z'), sb.toString().indexOf('z') + 3);
         }
-            String str = getStringInLine(zhangyilocation,goallocation);
+            //String str = getStringInLine(zhangyilocation,goallocation);
+        String str = "";
+        String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
+        for (String st : s) {
+            if(st.indexOf(zhangyilocation) >= 0 && st.indexOf(goallocation) >= 0){
+                str =  str+st;
+                break;
+            }
+        }
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
                 for (int i = 0; i < str.length(); i++) {
