@@ -1,5 +1,10 @@
 package comp1110.ass2;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This class provides the text interface for the Warring States game
  */
@@ -394,7 +399,7 @@ public class WarringStatesGame {
         return "";
     }
     public static String WinCard(String setup,String moveSequence,char goallocation) {
-        String sb = "";
+        StringBuilder sb = new StringBuilder();
 
         for(int i =0;i<moveSequence.length();i++){
             if(moveSequence.charAt(i)==goallocation){
@@ -405,18 +410,19 @@ public class WarringStatesGame {
                 if(zhangyiIndex>=0&&goalIndex>=0){
                     int f = Math.max(zhangyiIndex,goalIndex);
                     int s = Math.min(zhangyiIndex,goalIndex)+1;
-                        for(int k =s;k<f;k++){
+                        for(int k=s;k<f;k++){
                             if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
-                                sb = sb +getCard(setup,str.charAt(k));
+                                sb.append(getCard(setup,str.charAt(k)));
                             }
                         }
                     }
+                    sb.append(getCard(setup,goallocation));
                 break;// the break is really important to reduce the waste of time
             }else{
                 setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
             }
         }
-        return sb;
+        return sb.toString();
         }
 
 
@@ -426,31 +432,32 @@ public class WarringStatesGame {
      * The list of supporters is a sequence of two-character card IDs, representing
      * the cards that the chosen player collected by moving Zhang Yi.
      *
+     *
      * @param setup        A placement string representing the board setup
      * @param moveSequence a string of location characters representing moves
      * @param numPlayers   the number of players in the game, must be in the range [2..4]
      * @param playerId     the player number for which to get the list of supporters, [0..(numPlayers-1)]
      * @return the list of supporters for the given player
      */
-    //Author- Ruiyi Sun
+    //Author- Ruiyi Sun   --
     public static String getSupporters(String setup, String moveSequence, int numPlayers, int playerId) {
         // FIXME Task 7: get the list of supporters for a given player after a sequence of moves
         // distribute the sting to a list of list with the number of players
         // use the for loop or something else to  extract the elements in each list of list with the playerId(index)
         // combine elements and return a string
         // transfer the string to a 2-char-string(a-g,0-7)
-        String supporter = "";
+        StringBuilder supporter = new StringBuilder();
             if(moveSequence.length()%numPlayers==0||moveSequence.length()%numPlayers<playerId+1){
             for (int i = 0; i < (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
-                supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers)) +WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
+                supporter.append(WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers)));
                 // should get the currect card between move seq
              }
             }else if (moveSequence.length()%numPlayers>=playerId+1){
                 for (int i = 0; i <= (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
-                    supporter =  supporter + getCard(setup, moveSequence.charAt(playerId + i * numPlayers))+WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers));
+                    supporter.append(WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers)));
                 }
             }
-        return supporter;
+        return supporter.toString();
     }
     private static String getCard(String setup,char s ){
         for(int j = 2; j<setup.length();j = j+3){
@@ -493,19 +500,18 @@ public class WarringStatesGame {
         String k = "abcdefg";// the kingdom is sequence
         for (int a = 0; a < flag.length; a++) {
             int j = 0;// the number of flag in per player
-            int[] flagOfOne = new int[numPlayers];
-            //Integer[] flagOfOne = new Integer[numPlayers];
+            Integer[] flagOfOne = new Integer[numPlayers];
             for (int i = 0; i < numPlayers; i++) {
                 String s = getSupporters(setup, moveSequence, numPlayers, i);
-                flagOfOne[i] = getNumberOfK(s, k.charAt(a));
-            }
-            int max=-1000;
-            for(int o =0;o<flagOfOne.length;o++){
-                if(flagOfOne[o]>max){
-                    max = flagOfOne[o];
+                int l = 0;
+                for (int io =0;io<s.length();io= io+2){
+                    if(s.charAt(io)==k.charAt(a)){
+                        l ++;
+                    }
                 }
+                flagOfOne[i] = l;
             }
-            //int max = Collections.max(Arrays.asList(flagOfOne));
+            int max = Collections.max(Arrays.asList(flagOfOne));
             int[] takeSameNumber = new int[numPlayers];
             int number = 0;
             for (int m = 0; m < flagOfOne.length; m++) {
@@ -541,15 +547,6 @@ public class WarringStatesGame {
             }
         }
         return flag;
-    }
-    public static int getNumberOfK(String getSupporter,char k){
-        int j = 0;
-        for (int i =0;i<getSupporter.length();i= i+2){
-            if(getSupporter.charAt(i)==k){
-                j = j+1;
-            }
-        }
-        return j;
     }
     /**
      * Generate a legal move, given the provided placement string.

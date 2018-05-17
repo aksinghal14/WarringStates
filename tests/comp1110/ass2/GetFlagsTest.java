@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class GetFlagsTest {
     @Rule
-    public Timeout globalTimeout = Timeout.millis(2000000);
+    public Timeout globalTimeout = Timeout.millis(2000);
 
     @Test
     public void testComprehensive() {
