@@ -24,9 +24,7 @@ public class WarringStatesGame {
     //Author- Shunyu Yao
     static boolean isCardPlacementWellFormed(String cardPlacement) {
         // FIXME Task 2: determine whether a card placement is well-formed
-
         //or use the int = ascii;
-
         boolean b1 = false;
         boolean b2 = false;
         boolean b3 = false;
@@ -35,8 +33,9 @@ public class WarringStatesGame {
             b1 = true;
         } else {
             b1 = false;
-        }
+        }// check the a-g kingdom and z9 (zhangyi)
 
+        // check if the card is correct
         if (cardPlacement.charAt(0) == 'a') {
             if (cardPlacement.charAt(1) >= '0' && cardPlacement.charAt(1) <= '7') {
                 b2 = true;
@@ -73,20 +72,20 @@ public class WarringStatesGame {
             b2 = false;
         }
 
-
+        // check the location of card
         if ((cardPlacement.charAt(2) >= 'A' && cardPlacement.charAt(2) <= 'Z') || (cardPlacement.charAt(2) >= '0' && cardPlacement.charAt(2) <= '9')) {
             b3 = true;
         } else {
             b3 = false;
         }
-
+        // if the three bool is true, the task should be correct
         if (b1 && b2 && b3) {
             return true;
         } else {
             return false;
         }
     }
-
+    // get a string of card
     static String[] getCardPlacement(String placement) {
         String[] card = new String[placement.length() / 3];
 
@@ -99,11 +98,11 @@ public class WarringStatesGame {
         }
         return card;
     }
-
+    // get the location of card
     static char getCardLocation(String cardPlacement) {
         return cardPlacement.charAt(2);
     }
-
+    // get the card string <a-g><0-7>
     static String getCardStates(String cardPlacement) {
         return cardPlacement.substring(0, 2);
     }
@@ -218,7 +217,7 @@ public class WarringStatesGame {
     public static boolean isMoveLegal(String placement, char locationChar) {
         // FIXME Task 5: determine whether a given move is legal
         //check the third character of the string placement whether it's equals a-z or 0-9 check the third character of the string placement equals to locationChar compares the third character of the string placement and the locationChar..compares the third character and then compares the second character of the string placement whether there are the same.
-        String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";// the location string
         if (c.indexOf(locationChar) >= 0) {
             // check the zhangyi in the range of 0-9 or A-Z
             // check char location and the zhangyi in the same line
@@ -232,7 +231,7 @@ public class WarringStatesGame {
     public static char zhangyilocation(String placement) {
         return placement.charAt(placement.indexOf('z') + 2);
     }
-
+// to find the location of card
     public static char locationC(char locationChar, String placement) {
         for (int q = 2; q < placement.length(); q = q + 3) {
             if (placement.charAt(q) == locationChar) {
@@ -241,7 +240,7 @@ public class WarringStatesGame {
         }
         return '1';
     }
-
+     // should zhangyi and the goal location in the same line
     public static boolean isInSameLine(char zhangyilocation, char locationChar) {
         String[] row = new String[]{"4YSMGA", "5ZTNHB", "60UOIC", "71VPJD", "82WQKE", "93XRLF"};
         String[] column = new String[]{"ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
@@ -258,7 +257,7 @@ public class WarringStatesGame {
         }
         return false;
     }
-
+// should the goal location empty
     public static boolean notNoCard(char locationChar, String placement) {
         for (int i = 2; i <= placement.length() - 1; i = i + 3) {
             if (placement.charAt(i) == locationChar && placement.charAt(i - 2) != 'z') {
@@ -267,7 +266,7 @@ public class WarringStatesGame {
         }
         return false;
     }
-
+// should the goal location fit the rule-- I mean it should be the furthest card
     public static boolean getLine(char locationChar, String placement) {
         //zhangyilocation(placement) should known
         // the location of place
@@ -307,7 +306,7 @@ public class WarringStatesGame {
         }
         return true;
     }
-
+// use known location in the card to get the index of the kingdom char in the card
     public static int getIndexKingdom(String placement, char location){
         int j = 0;
         for(int i=2;i<placement.length();i=i+3){
@@ -354,19 +353,20 @@ public class WarringStatesGame {
             return false;
         }
     }
+    // to update the placement-- if there are several card be removed.
     public static String updatePlacement(String placement, char zhangyilocation, char goallocation) {
         StringBuilder sb = new StringBuilder(placement);
         char goalState = locationC(goallocation, sb.toString());
         if (sb.toString().indexOf('z') >= 0) {
             sb.delete(sb.toString().indexOf('z'), sb.toString().indexOf('z') + 3);
-        }
+        }// delete the zhangyi card in previous location
         String str = "";
         String[] s = new String[]{"AGMSY4", "BHNTZ5", "CIOU06", "DJPV17", "EKQW28", "FLRX39", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789"};
         for (String st : s) {
             if(st.indexOf(zhangyilocation) >= 0 && st.indexOf(goallocation) >= 0){
                 str =  str+st;
                 break;
-            }
+            }// check the same line string
         }
             int a = str.indexOf(zhangyilocation);
             int b = str.indexOf(goallocation);
@@ -376,10 +376,10 @@ public class WarringStatesGame {
                         for (int j = 2; j < sb.toString().length(); j = j + 3) {
                             if (sb.toString().charAt(j) == str.charAt(i)) {
                                 if (sb.toString().charAt(j - 2) == goalState && goallocation != sb.toString().charAt(j)) {
-                                    sb.delete((j - 2), j + 1);
+                                    sb.delete((j - 2), j + 1);// delete the card has the same kingdom between zhangyi and goal location
                                 } else if (goallocation == sb.toString().charAt(j)) {
                                     sb.setCharAt(j - 1, '9');
-                                    sb.setCharAt(j - 2, 'z');
+                                    sb.setCharAt(j - 2, 'z');// add the zhangyi to the goal location
                                 }
                                 break;
                             }
@@ -397,10 +397,9 @@ public class WarringStatesGame {
             }
         }
         return "";
-    }
+    }// get the string of the line -- zhangyi and goal location exist
     public static String WinCard(String setup,String moveSequence,char goallocation) {
         StringBuilder sb = new StringBuilder();
-
         for(int i =0;i<moveSequence.length();i++){
             if(moveSequence.charAt(i)==goallocation){
                 char zhangyi = zhangyilocation(setup);
@@ -413,13 +412,13 @@ public class WarringStatesGame {
                         for(int k=s;k<f;k++){
                             if(getCard(setup,str.charAt(k)).charAt(0)==getCard(setup,goallocation).charAt(0)){
                                 sb.append(getCard(setup,str.charAt(k)));
-                            }
+                            }// add the card in the string
                         }
                     }
                     sb.append(getCard(setup,goallocation));
                 break;// the break is really important to reduce the waste of time
             }else{
-                setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));
+                setup = updatePlacement(setup,zhangyilocation(setup),moveSequence.charAt(i));// update the string if there is not the goallocation
             }
         }
         return sb.toString();
@@ -455,7 +454,7 @@ public class WarringStatesGame {
             }else if (moveSequence.length()%numPlayers>=playerId+1){
                 for (int i = 0; i <= (moveSequence.length()-moveSequence.length()%numPlayers) / numPlayers; i++) {
                     supporter.append(WinCard(setup,moveSequence,moveSequence.charAt(playerId + i * numPlayers)));
-                }
+                }// get the correct card
             }
         return supporter.toString();
     }
@@ -466,7 +465,7 @@ public class WarringStatesGame {
             }
         }
         return "  ";
-    }
+    }// get the first and second char in a card
     /**
      * Given a setup and move sequence, determine which player controls the flag of each kingdom
      * after all the moves in the sequence have been played.
@@ -508,8 +507,8 @@ public class WarringStatesGame {
                     if(s.charAt(io)==k.charAt(a)){
                         l ++;
                     }
-                }
-                flagOfOne[i] = l;
+                }// check the number one(same) of kingdom card
+                flagOfOne[i] = l;// store it in the array -- the array should be one kingdom and the numplayer length
             }
             int max = Collections.max(Arrays.asList(flagOfOne));
             int[] takeSameNumber = new int[numPlayers];
@@ -536,7 +535,7 @@ public class WarringStatesGame {
                             if(takeSameNumber[h]!=-1){
                                 flag[a] = h;
                                 break;
-                            }
+                            }// the nearest card have this kingdom and should be the max number of card's player
                         }
                     }
                 }else{
