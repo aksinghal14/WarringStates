@@ -303,6 +303,17 @@ public class WarringStatesGame {
         return true;
     }
 
+    public static int getIndexKingdom(String placement, char location){
+        int j = 0;
+        for(int i=2;i<placement.length();i=i+3){
+            if(placement.charAt(i) == location){
+                j = i-2;
+            }
+        }
+
+        return j;
+    }
+
     /**
      * Determine whether a move sequence is valid.
      * To be valid, the move sequence must be comprised of 1..N location characters
@@ -407,6 +418,7 @@ public class WarringStatesGame {
         }
         return sb;
         }
+
 
     /**
      * Get the list of supporters for the chosen player, given the provided
