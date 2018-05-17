@@ -58,16 +58,21 @@ public class Viewer extends Application {
     TextField textField;
 
     public String setup;
-    public String place;
+    //public String place;
+
+    public String kingdom;
+
+    public String movesequence = "";
+    public String supporters;
 
 
-    char mousePlace(){
+    /*char mousePlace(){
         char c ='.';
         if((x >= 100 && x<=200) && (y>=300 && y<=400) ){
             c = '1';
         }
         return c;
-    }
+    }*/
 
     /**
      * Draw a placement in the window, removing any previously drawn one
@@ -112,6 +117,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'4');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'4');
                                         makePlacement(setup);
                                     }
@@ -132,6 +141,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'5');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'5');
                                         makePlacement(setup);
                                     }
@@ -152,6 +165,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'6');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'6');
                                         makePlacement(setup);
                                     }
@@ -172,6 +189,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'7');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'7');
                                         makePlacement(setup);
                                     }
@@ -192,6 +213,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'8');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'8');
                                         makePlacement(setup);
                                     }
@@ -213,6 +238,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'9');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'9');
                                         makePlacement(setup);
                                     }
@@ -232,14 +261,18 @@ public class Viewer extends Application {
 
                                 public void handle(MouseEvent me) {
                                     //placement = WarringStatesGame.updatePlacement(placement,'2','4');
-                                    x = me.getX();
+                                    /*x = me.getX();
                                     y = me.getY();
                                     triagger = true;
-                                    System.out.println("click");
+                                    System.out.println("click");*/
 
                                     if(triagger){
                                         //if(WarringStatesGame.isMoveLegal(setup,'1')){
-                                        System.out.println(triagger);
+                                        //System.out.println(triagger);
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'Z');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Z');
                                         //place = setup;
                                         makePlacement(setup);
@@ -268,6 +301,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'0');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'0');
                                         makePlacement(setup);
                                     }
@@ -289,6 +326,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'1');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'1');
                                         makePlacement(setup);
                                     }
@@ -308,12 +349,19 @@ public class Viewer extends Application {
                         if(WarringStatesGame.isMoveLegal(placement,'Y')){
                             square.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                                 public void handle(MouseEvent me) {
-                                    x = me.getX();
-                                    y = me.getY();
-                                    triagger = true;
                                     if(triagger){
+
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'Y');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
+                                        //supporters = WarringStatesGame.getSupporters(setup,movesequence,1,0);
+                                        //System.out.println(supporters);
+
+
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Y');
                                         makePlacement(setup);
+
                                     }
                                 }
                             });
@@ -333,6 +381,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'Z');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'2');
                                         makePlacement(setup);
                                     }
@@ -354,18 +406,30 @@ public class Viewer extends Application {
 
                                 public void handle(MouseEvent me) {
                                     //placement = WarringStatesGame.updatePlacement(placement,'2','4');
-                                    x = me.getX();
+                                   /* x = me.getX();
                                     y = me.getY();
-                                    triagger = true;
-                                    System.out.println("click");
-
+                                    triagger = true;*/
+                                    //System.out.println("click");
                                     if(triagger){
                                         //if(WarringStatesGame.isMoveLegal(setup,'1')){
-                                        System.out.println(triagger);
+                                        //System.out.println(triagger);
+
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'3');
+                                        //System.out.println(index);
+                                        /*kingdom = setup.substring(index, index+2);
+                                        System.out.println(kingdom);
+                                        System.out.println(setup.substring(index+2,index+3));*/
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        //System.out.println(movesequence);
+
+
+
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'3');
                                         //place = setup;
                                         makePlacement(setup);
-                                        System.out.println(setup);
+                                        //System.out.println(setup);
+
 
 
                                     }
@@ -386,6 +450,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'U');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'U');
                                         makePlacement(setup);
                                     }
@@ -406,6 +474,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'S');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'S');
                                         makePlacement(setup);
                                     }
@@ -426,6 +498,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'T');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'T');
                                         makePlacement(setup);
                                     }
@@ -446,6 +522,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'V');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'V');
                                         makePlacement(setup);
                                     }
@@ -466,6 +546,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'W');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'W');
                                         makePlacement(setup);
                                     }
@@ -486,6 +570,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'X');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'X');
                                         makePlacement(setup);
                                     }
@@ -507,6 +595,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'M');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'M');
                                         makePlacement(setup);
                                     }
@@ -527,6 +619,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'N');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'N');
                                         makePlacement(setup);
                                     }
@@ -547,6 +643,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'O');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'O');
                                         makePlacement(setup);
                                     }
@@ -567,6 +667,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'P');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'P');
                                         makePlacement(setup);
                                     }
@@ -587,6 +691,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'Q');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'Q');
                                         makePlacement(setup);
                                     }
@@ -607,6 +715,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'R');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'R');
                                         makePlacement(setup);
                                     }
@@ -627,6 +739,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'G');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'G');
                                         makePlacement(setup);
                                     }
@@ -647,6 +763,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'H');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'H');
                                         makePlacement(setup);
                                     }
@@ -667,6 +787,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'I');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'I');
                                         makePlacement(setup);
                                     }
@@ -687,6 +811,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'J');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'J');
                                         makePlacement(setup);
                                     }
@@ -707,6 +835,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'K');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'K');
                                         makePlacement(setup);
                                     }
@@ -727,6 +859,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'L');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'L');
                                         makePlacement(setup);
                                     }
@@ -747,6 +883,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'A');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'A');
                                         makePlacement(setup);
                                     }
@@ -767,6 +907,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'B');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'B');
                                         makePlacement(setup);
                                     }
@@ -787,6 +931,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'C');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'C');
                                         makePlacement(setup);
                                     }
@@ -807,6 +955,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'D');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'D');
                                         makePlacement(setup);
                                     }
@@ -827,6 +979,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'E');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'E');
                                         makePlacement(setup);
                                     }
@@ -847,6 +1003,10 @@ public class Viewer extends Application {
                                     y = me.getY();
                                     triagger = true;
                                     if(triagger){
+                                        int index = WarringStatesGame.getIndexKingdom(setup,'F');
+                                        char location = setup.substring(index+2,index+3).charAt(0);
+                                        movesequence = movesequence + location;
+                                        System.out.println(movesequence);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'F');
                                         makePlacement(setup);
                                     }
@@ -1106,9 +1266,12 @@ public class Viewer extends Application {
 
 
         //setup = generateRandomSetup();
+        //System.out.println(setup);
         setup = "g0Aa0Bf1Ca1Dc5Ee1Fa4Ge3He2Ia2Jc2Kd0Lf0Mb4Nd4Oa6Pc3Qe0Ra5Sc1Td1Uc4Vb5Wb0Xa7Yf2Zb10a31z92b33b64d35g16b27d28c09";
+        //setup = "g1Aa0Bc0Ce0De3Ed4Fb6Ga4Hg0Ib5Ja7Kb1Lz9Me1Nd0Of0Pf1Qb2Rc1Sd3Ta5Ub4Va2Wc5Xd1Ya3Zc20d21c32f23a64c45b36b07a18e29";
 
-        System.out.println(setup);
+
+        //System.out.println(setup);
         makePlacement(setup);
 
 
@@ -1149,6 +1312,9 @@ public class Viewer extends Application {
                 }
                 }
         );
+
+        //makePlacement(setup);
+
 // enter the number
         textField.setOnKeyPressed((KeyEvent p) -> {
             if (p.getCode() == KeyCode.ENTER) {
@@ -1157,7 +1323,9 @@ public class Viewer extends Application {
             }
         });
 
-
+        /*TextField kingdomRecord = new TextField();
+        kingdomRecord.setText(kingdom);
+*/
 
         HBox hb = new HBox();
         hb.getChildren().addAll(label1, textField, button);
