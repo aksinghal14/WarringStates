@@ -51,6 +51,7 @@ public class Game extends Application {
     private static final String URI_BASE = "assets/";
 
     private final Group root = new Group();
+    //private final Group players1 = new Group();
     private final Group controls = new Group();
     private final Group squareg = new Group();
     private final Group pieces = new Group();
@@ -62,6 +63,8 @@ public class Game extends Application {
     private double y;
 
     TextField textField;
+    TextField players1;
+    //Text players1 = new Text(900,1,"This is players1");
 
     public String setup;
 
@@ -73,10 +76,15 @@ public class Game extends Application {
     public String supporters1 = "";
     public String supporters2 = "";
 
+    void makePlayer1(String supporters1){
+        Rectangle squarePlayer1 = new Rectangle(900,1,30,30);
+        //players1.getChildren().add(squarePlayer1);
+    }
+
 
     void makePlacement(String placement) {
 
-        this.pieces.getChildren().clear();// clearing pieces
+        //this.pieces.getChildren().clear();// clearing pieces
 
         while (root.getChildren().size() >= 36)// input string less than 36
             root.getChildren().remove(root.getChildren().size() - 1);
@@ -87,6 +95,7 @@ public class Game extends Application {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 Rectangle square = new Rectangle(i * 100, j * 100, 90, 90);
+
                 Text text = new Text();
                 text.setLayoutX(i * 100 + 5);
                 text.setLayoutY(j * 100 + 50);
@@ -1115,6 +1124,11 @@ public class Game extends Application {
                                         System.out.println(supporters1 + "|"+supporters2);
                                         setup = WarringStatesGame.updatePlacement(setup,WarringStatesGame.zhangyilocation(setup),'E');
 
+                                        players1 = new TextField();
+                                        players1.setText(supporters1);
+                                        //System.out.println(players1.getText());
+                                        root.getChildren().add(players1);
+
                                         makePlacement(setup);
                                     }
                                 }
@@ -1430,10 +1444,10 @@ public class Game extends Application {
         primaryStage.setScene(scene2);
         primaryStage.show();*/
 
-        String musicFile= new File("assets/Tone.mp3").toURI().toString();
+       /* String musicFile= new File("assets/Tone.mp3").toURI().toString();
         MediaPlayer mediaPlayer=new MediaPlayer(new Media(musicFile));
         mediaPlayer.play();
-
+*/
 
         Label label1 = new Label("Placement:");
         textField = new TextField();
@@ -1470,13 +1484,14 @@ public class Game extends Application {
         hb.setLayoutY(VIEWER_HEIGHT - 50);
         controls.getChildren().add(hb);
         AnchorPane anchorPane = new AnchorPane();
-        Group group = new Group();
-        primaryStage.setTitle("Warring States Viewer");
+        //Group group = new Group();
+        primaryStage.setTitle("Warring States Game");
         squareg.setStyle("-fx-background-color: #C0C0C0;");
 
         final Scene scene = new Scene(root, 1000, 1000, Color.LAVENDER);
 
         root.getChildren().add(controls);
+        //root.getChildren().add(players1);
 
         BorderPane pane = new BorderPane();
 
