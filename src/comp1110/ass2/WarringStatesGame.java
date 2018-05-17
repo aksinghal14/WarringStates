@@ -628,12 +628,19 @@ public class WarringStatesGame {
         String kingdom = "abcdefg";
         for (int a = 0; a < flag.length; a++) {
             int j = 0;// the number of flag in per player
-            Integer[] flagOfOne = new Integer[numPlayers];
+            int[] flagOfOne = new int[numPlayers];
+            //Integer[] flagOfOne = new Integer[numPlayers];
             for (int i = 0; i < numPlayers; i++) {
                 String s = getSupporters(setup, moveSequence, numPlayers, i);
                 flagOfOne[i] = getNumberOfKingdom(s, kingdom.charAt(a));
             }
-            int max = Collections.max(Arrays.asList(flagOfOne));
+            int max=-1000;
+            for(int o =0;o<flagOfOne.length;o++){
+                if(flagOfOne[o]>max){
+                    max = flagOfOne[o];
+                }
+            }
+            //int max = Collections.max(Arrays.asList(flagOfOne));
             //ArrayList<Integer> takeSameNumber = new ArrayList<>();
             int[] takeSameNumber = new int[numPlayers];
             int number = 0;
