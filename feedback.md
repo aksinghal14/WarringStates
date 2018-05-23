@@ -7,7 +7,7 @@ Good work! Passed most tests and implemented a basic playable game. Good try on 
 
 ## Mark
 
-**7.62/11.0**
+**7.3/11.0**
 
 ## Miscellaneous marks
 
@@ -16,7 +16,7 @@ Good work! Passed most tests and implemented a basic playable game. Good try on 
 ||All files correct                     | .25/.25 |
 ||Authorship clear for all classes      | .25/.25 |
 ||Appropriate use of git                | .5/.5  |
-||Program runs from jar                 | .25/.25 |
+||Program runs from jar                 | /.25 |
 |P|Appropriate use of OO features       | /.5  |
 |P|Presentation pdf complete            | .5/.5  |
 |CR|Program well designed               | .3/.5  |
@@ -28,7 +28,7 @@ Good work! Passed most tests and implemented a basic playable game. Good try on 
 |D|Works well and easy to run           | .25/.25 |
 |HD|Game is exceptional                 | /.5  |
 
-**Total for miscellaneous marks:**  3.5/5.25
+**Total for miscellaneous marks:**  3.25/5.25
 
 ## Game marks (manual)
 
